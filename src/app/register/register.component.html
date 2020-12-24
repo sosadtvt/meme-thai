@@ -1,0 +1,48 @@
+
+<style>
+    .centerScreen{
+        position: absolute;
+        top: 50%;
+        margin-top: -150px;
+        left: 50%;
+        margin-left: -180px;
+    }
+
+</style>
+<!-- header="Login"  -->
+
+<div   class="centerScreen p-grid p-flex-column ">
+    <p-card header="Sign Up" subheader="สมัครสมาชิกเพื่อเข้าสู่ระบบ" [style]="{width: '360px'}" styleClass="p-card-shadow-24 ">
+        <!-- <div class="p-grid p-fluid ">
+            <p-header><h1>Login</h1></p-header>
+            
+        </div> -->
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                        <span class="p-float-label">
+                            <input style="width: 100%;" pInputText id="float-input" type="text"  > 
+                            <label for="float-input">Username</label>
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                        <span class="p-float-label">
+                            <input pPassword style="width: 100%;" id="float-input" type="password" pInputText > 
+                            <label  for="float-input">Password</label>
+                        </span> 
+                </div> 
+            </div>  
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+            <button pButton pRipple routerLink="/home" type="button" label="Sign up" class="p-button-rounded" style="width: 100%;"></button>
+            
+        </div>
+    </p-card>
+</div>

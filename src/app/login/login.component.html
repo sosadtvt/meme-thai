@@ -1,0 +1,53 @@
+<style>
+    .centerScreen{
+        position: absolute;
+        top: 50%;
+        margin-top: -150px;
+        left: 50%;
+        margin-left: -180px;
+    }
+
+</style>
+<!-- header="Login"  -->
+
+<div   class="centerScreen p-grid p-flex-column ">
+    <p-card header="Login" subheader="ยินดีต้อนรับ เข้าสู่ระบบเพื่อดูมีม" [style]="{width: '360px'}" styleClass="p-card-shadow-24 ">
+        <!-- <div class="p-grid p-fluid ">
+            <p-header><h1>Login</h1></p-header>
+            
+        </div> -->
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                        <span class="p-float-label">
+                            <input style="width: 100%;" pInputText id="float-input" type="text"  > 
+                            <label for="float-input">Username</label>
+                        </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-grid p-fluid">
+            <div class="p-col-12 p-md-4">
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                        <span class="p-float-label">
+                            <input style="width: 100%;" id="float-input" type="password" pInputText > 
+                            <label for="float-input">Password</label>
+
+                        </span> 
+                </div> 
+            </div>  
+        </div>
+        <div class="p-fluid p-formgrid p-grid">
+            <button pButton pRipple routerLink="/home" type="button" label="Sign in" class="p-button-rounded" style="width: 100%;"></button>
+            <!-- <div class="p-inputgroup"> -->
+                        <!-- <span class="p-float-label"> -->
+                            <p-button label="สมัครามาชิกที่นี่" styleClass="p-button-link" routerLink="/register"></p-button>
+                            <!-- <p-button label="Forgot Password?" styleClass="p-button-link"></p-button> -->
+                        <!-- </span>  -->
+            <!-- </div>   -->
+        </div>
+    </p-card>
+</div>
