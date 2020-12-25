@@ -30,10 +30,9 @@
             "styles": [
               "src/styles.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-               "node_modules/primeicons/primeicons.css",
-               "node_modules/primeng/resources/primeng.min.css",
-               "node_modules/primeng/resources/themes/saga-blue/theme.css"
-               
+              "node_modules/primeicons/primeicons.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/primeng/resources/themes/saga-blue/theme.css"
             ],
             "scripts": []
           },
@@ -129,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "meme-thai"
+  "defaultProject": "meme-thai",
+  "cli": {
+    "analytics": "bd77d19f-a06c-44c9-8635-80be5ec05b31"
+  }
 }

@@ -41,9 +41,52 @@
             </div>  
         </div>
         <div class="p-fluid p-formgrid p-grid">
-            <button pButton pRipple routerLink="/home" type="button" label="Sign in" class="p-button-rounded" style="width: 100%;"></button>
+            <button pButton pRipple routerLink="/home" type="button" label="Sign in" class="p-button-rounded" style="width: 100%;"></button><br>
             <!-- <div class="p-inputgroup"> -->
                         <!-- <span class="p-float-label"> -->
+                            <!-- <p-button (click)="showBasicDialog()" styleClass="p-button-rounded" icon="pi pi-external-link" label="สมัครสมาชิก"></p-button>
+                <p-dialog header="สมัครสมาชิก" [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+ <!-- REGISTER 
+                    <p >
+                            <p-card header="Sign Up" subheader="สมัครสมาชิกเพื่อเข้าสู่ระบบ" [style]="{width: '100%'}" styleClass="p-card-shadow-24 bg-info">
+                                 <div class="p-grid p-fluid ">
+                                    <p-header><h1>Login</h1></p-header>
+                                    
+                                </div> 
+                                <div class="p-grid p-fluid">
+                                    <div class="p-col-12 p-md-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                                                <span class="p-float-label">
+                                                    <input style="width: 100%;" pInputText id="float-input" type="text"  > 
+                                                    <label for="float-input">Username</label>
+                                                </span>
+                                        </div>
+                                    </div>
+                                </div>
+                        
+                                <div class="p-grid p-fluid">
+                                    <div class="p-col-12 p-md-4">
+                                        <div class="p-inputgroup">
+                                            <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                                                <span class="p-float-label">
+                                                    <input pPassword style="width: 100%;" id="float-input" type="password" pInputText > 
+                                                    <label  for="float-input">Password</label>
+                                                </span> 
+                                        </div> 
+                                    </div>  
+                                </div>
+                                <div class="p-fluid p-formgrid p-grid">
+                                    <button pButton pRipple routerLink="/home" type="button" label="Sign up" class="p-button-rounded" style="width: 100%;"></button>
+                                    
+                                </div>
+                            </p-card>
+                        </p>
+                    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayBasic=false" label="Sign Up" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog> -->
+
                             <p-button label="สมัครามาชิกที่นี่" styleClass="p-button-link" routerLink="/register"></p-button>
                             <!-- <p-button label="Forgot Password?" styleClass="p-button-link"></p-button> -->
                         <!-- </span>  -->

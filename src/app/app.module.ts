@@ -23,6 +23,7 @@ import {TabViewModule} from 'primeng/tabview';
 import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
 import {MegaMenuItem} from 'primeng/api';
+import {DialogModule} from 'primeng/dialog';
 
 
 
@@ -60,6 +61,7 @@ const appRutes:Routes=[
     CommonModule,
     AvatarModule,
     AvatarGroupModule,
+    DialogModule
     
     //InputTextModule
     
