@@ -28,7 +28,7 @@ import {MegaMenuItem} from 'primeng/api';
 
 
 const appRutes:Routes=[
-
+{path: '',component:LoginComponent},
 {path: 'login',component:LoginComponent},
 {path: 'register',component:RegisterComponent},
 {path: 'home',component:HomeComponent},
