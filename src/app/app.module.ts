@@ -24,6 +24,7 @@ import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
 import {MegaMenuItem} from 'primeng/api';
 import {DialogModule} from 'primeng/dialog';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -43,7 +44,8 @@ const appRutes:Routes=[
     LoginComponent,
     RegisterComponent,
     HeaderComponent,
-    HomeComponent
+    HomeComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
