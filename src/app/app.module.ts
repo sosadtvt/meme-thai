@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {AccordionModule} from 'primeng/accordion';
@@ -8,11 +7,7 @@ import {MenuItem} from 'primeng/api';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {CardModule} from 'primeng/card';
 import {ButtonModule} from 'primeng/button';
-import { LoginComponent } from './login/login.component';
 import {PasswordModule} from 'primeng/password';
-import { RegisterComponent } from './register/register.component';
-import { HeaderComponent } from './header/header.component';
-import { HomeComponent } from './home/home.component';
 //import {InputTextModule} from 'primeng/inputtext';
 import {Routes,RouterModule} from "@angular/router";
 import {MenubarModule} from 'primeng/menubar';
@@ -24,10 +19,15 @@ import {AvatarModule} from 'primeng/avatar';
 import {AvatarGroupModule} from 'primeng/avatargroup';
 import {MegaMenuItem} from 'primeng/api';
 import {DialogModule} from 'primeng/dialog';
-import { ProfileComponent } from './profile/profile.component';
 //import {CaptchaModule} from 'primeng/captcha';
 
 
+////////////////Router///////////
+import{HeaderComponent} from'./header/header.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
+import { HomeComponent } from './home/home.component';
+import { ProfileComponent } from './profile/profile.component';
 
 const appRutes:Routes=[
 {path: '',component:LoginComponent},
@@ -43,8 +43,8 @@ const appRutes:Routes=[
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    HeaderComponent,
     HomeComponent,
+    HeaderComponent,
     ProfileComponent
   ],
   imports: [
@@ -55,7 +55,6 @@ const appRutes:Routes=[
     CardModule,
     ButtonModule,
     PasswordModule,
-    RouterModule.forRoot(appRutes),
     MenubarModule,
     MenuModule,
     TabViewModule,
@@ -63,7 +62,8 @@ const appRutes:Routes=[
     CommonModule,
     AvatarModule,
     AvatarGroupModule,
-    DialogModule
+    DialogModule,
+    RouterModule.forRoot(appRutes)
     //CaptchaModule
     
     //InputTextModule

@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-//import {MenubarDemo} from './menubardemo';
-import{HeaderComponent} from'./header/header.component';
 
-const routes: Routes = [];
+import { AppComponent } from './app.component';
+import { Routes, RouterModule } from '@angular/router';
+const routes: Routes = [
+ 
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
