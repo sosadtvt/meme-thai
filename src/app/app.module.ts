@@ -25,7 +25,7 @@ import {AvatarGroupModule} from 'primeng/avatargroup';
 import {MegaMenuItem} from 'primeng/api';
 import {DialogModule} from 'primeng/dialog';
 import { ProfileComponent } from './profile/profile.component';
-
+//import {CaptchaModule} from 'primeng/captcha';
 
 
 
@@ -63,7 +63,8 @@ const appRutes:Routes=[
     CommonModule,
     AvatarModule,
     AvatarGroupModule,
-    DialogModule
+    DialogModule,
+    CaptchaModule
     
     //InputTextModule
     
