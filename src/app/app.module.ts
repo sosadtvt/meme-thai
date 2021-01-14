@@ -34,6 +34,8 @@ const appRutes:Routes=[
 {path: 'login',component:LoginComponent},
 {path: 'register',component:RegisterComponent},
 {path: 'home',component:HomeComponent},
+{path: 'profile',component:ProfileComponent},
+
 ];
 
 
