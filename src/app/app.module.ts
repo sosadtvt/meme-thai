@@ -30,7 +30,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 
 const appRutes:Routes=[
-{path: '',component:ProfileComponent},
+{path: '',component:LoginComponent},
 {path: 'login',component:LoginComponent},
 {path: 'register',component:RegisterComponent},
 {path: 'home',component:HomeComponent},
@@ -63,8 +63,8 @@ const appRutes:Routes=[
     CommonModule,
     AvatarModule,
     AvatarGroupModule,
-    DialogModule,
-    CaptchaModule
+    DialogModule
+    //CaptchaModule
     
     //InputTextModule
     
