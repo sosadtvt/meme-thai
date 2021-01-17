@@ -20,7 +20,10 @@ import {AvatarGroupModule} from 'primeng/avatargroup';
 import {MegaMenuItem} from 'primeng/api';
 import {DialogModule} from 'primeng/dialog';
 //import {CaptchaModule} from 'primeng/captcha';
-
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
+import { NgxCaptchaModule } from 'ngx-captcha';
+ 
 
 ////////////////Router///////////
 import{HeaderComponent} from'./header/header.component';
@@ -28,6 +31,7 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
+import { from } from 'rxjs';
 
 const appRutes:Routes=[
 {path: '',component:LoginComponent},
@@ -65,7 +69,10 @@ const appRutes:Routes=[
     AvatarModule,
     AvatarGroupModule,
     DialogModule,
-    RouterModule.forRoot(appRutes)
+    RouterModule.forRoot(appRutes),
+    FormsModule,
+    HttpClientModule,
+    NgxCaptchaModule
     //CaptchaModule
     
     //InputTextModule

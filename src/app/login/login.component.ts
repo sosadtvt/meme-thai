@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {MessageService} from 'primeng/api';
+import {HttpClient} from '@angular/common/http';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -8,15 +11,24 @@ import {MessageService} from 'primeng/api';
 })
 export class LoginComponent implements OnInit {
 
-  constructor() {}
-  // displayBasic: boolean;
-  // showBasicDialog() {
-  //   this.displayBasic = true;
-  // }
-//   showResponse(event) {
-//     this.messageService.add({severity:'info', summary:'Succees', detail: 'User Responded', sticky: true});
-// }
-  ngOnInit(): void {
+  email: any;
+  password: any;
+
+  constructor(private http: HttpClient,private router: Router) {}
+  
+  ngOnInit(): void {}
+
+  login(){
+    console.log(this.email);
+    console.log(this.password);
+    let json = {email : this.email,password : this.password};
+    this.http.post('http://memthainode.comsciproject.com/login/loginUser', json)
+              .subscribe(response =>{
+                console.log("Login success");
+                this.router.navigateByUrl('/profile');
+              }, error=>{
+                console.log("Login fail");
+              });
   }
 
 }

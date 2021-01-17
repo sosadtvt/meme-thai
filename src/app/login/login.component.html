@@ -22,7 +22,7 @@
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
                         <span class="p-float-label">
-                            <input style="width: 100%;" pInputText id="float-input" type="text"  > 
+                            <input style="width: 100%;" pInputText id="float-input" type="text" [(ngModel)]="email"> 
                             <label for="float-input">Username</label>
                         </span>
                 </div>
@@ -34,7 +34,7 @@
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
                         <span class="p-float-label">
-                            <input style="width: 100%;" id="float-input" type="password" pInputText > 
+                            <input style="width: 100%;" id="float-input" type="password" pInputText [(ngModel)]="password"> 
                             <label for="float-input">Password</label>
 
                         </span> 
@@ -45,8 +45,8 @@
         <div class="p-fluid p-formgrid p-grid">
             <!-- <p-toast></p-toast>
                 <p-captcha siteKey="6LcPEisaAAAAACkNcAvHUyfnun2gtvAHfof2ToaN"  (onResponse)="showResponse($event) "></p-captcha> -->
-            <button pButton pRipple routerLink="/home" type="button" label="Sign in" class="p-button-rounded" style="width: 100%;"></button><br>
-                            <p-button label="สมัครามาชิกที่นี่" styleClass="p-button-link" routerLink="/register"></p-button>
+            <button pButton pRipple (click)="login()" type="button" label="Sign in" class="p-button-rounded" style="width: 100%;"></button><br>
+            <p-button label="สมัครสมาชิกที่นี่" styleClass="p-button-link" routerLink="/register"></p-button>
                             <!-- <p-button label="Forgot Password?" styleClass="p-button-link"></p-button> -->
                         <!-- </span>  -->
             <!-- </div>   -->

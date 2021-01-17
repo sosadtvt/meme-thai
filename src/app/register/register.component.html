@@ -20,7 +20,7 @@
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
                         <span class="p-float-label">
-                            <input style="width: 100%;" pInputText id="float-input" type="email"  > 
+                            <input style="width: 100%;" pInputText id="float-input" type="email" [(ngModel)]="email"> 
                             <label for="float-input">Email</label>
                         </span>
                 </div>
@@ -32,8 +32,8 @@
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
                         <span class="p-float-label">
-                            <input style="width: 100%;" pInputText id="float-input" type="text"  > 
-                            <label for="float-input">Username</label>
+                            <input style="width: 100%;" pInputText id="float-input" type="text" [(ngModel)]="name"> 
+                            <label for="float-input">Name</label>
                         </span>
                 </div>
             </div>
@@ -44,15 +44,16 @@
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
                         <span class="p-float-label">
-                            <input pPassword style="width: 100%;" id="float-input"  type="password" pInputText > 
+                            <input pPassword style="width: 100%;" id="float-input"  type="password" pInputText [(ngModel)]="password"> 
                             <label  for="float-input">Password</label>
                         </span> 
                 </div> 
             </div>  
+            <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" [(ngModel)]="cap">
+            </ngx-recaptcha2> <br>
         </div>
         <div class="p-fluid p-formgrid p-grid">
-            <button pButton pRipple routerLink="/home" type="button" label="Sign up" class="p-button-rounded" style="width: 100%;"></button>
-            
+            <button pButton pRipple type="button" label="Sign up" class="p-button-rounded" style="width: 100%;" (click)="register()"></button>
         </div>
     </p-card>
 </div>

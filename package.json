@@ -11,7 +11,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^11.0.8",
+    "@angular/animations": "^11.0.9",
     "@angular/common": "~11.0.5",
     "@angular/compiler": "~11.0.5",
     "@angular/core": "~11.0.5",
@@ -20,6 +20,7 @@
     "@angular/platform-browser-dynamic": "~11.0.5",
     "@angular/router": "~11.0.5",
     "bootstrap": "^4.5.3",
+    "ngx-captcha": "^8.0.1",
     "primeicons": "^4.1.0",
     "primeng": "^11.1.0-rc.1",
     "rxjs": "~6.6.0",
