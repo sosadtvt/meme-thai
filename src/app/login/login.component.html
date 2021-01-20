@@ -6,13 +6,15 @@
         margin-top: -150px;
         left: 50%;
         margin-left: -180px;
+
     }
+
 
 </style>
 <!-- header="Login"  -->
 <!-- <h1>สวัสดีโอม</h1> -->
 <div   class="centerScreen p-grid p-flex-column ">
-    <p-card header="Login" subheader="ยินดีต้อนรับ เข้าสู่ระบบเพื่อดูมีม" [style]="{width: '360px'}" styleClass="p-card-shadow-24 bg-info">
+    <p-card header="Login" subheader="ยินดีต้อนรับ เข้าสู่ระบบเพื่อดูมีม" [style]="{width: '360px'}" styleClass="p-card-shadow-24 bg-info" >
         <!-- <div class="p-grid p-fluid ">
             <p-header><h1>Login</h1></p-header>
             
@@ -23,7 +25,7 @@
                     <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
                         <span class="p-float-label">
                             <input style="width: 100%;" pInputText id="float-input" type="text" [(ngModel)]="email"> 
-                            <label for="float-input">Username</label>
+                            <label for="float-input" >Username</label>
                         </span>
                 </div>
             </div>
@@ -36,17 +38,15 @@
                         <span class="p-float-label">
                             <input style="width: 100%;" id="float-input" type="password" pInputText [(ngModel)]="password"> 
                             <label for="float-input">Password</label>
-
                         </span> 
                 </div> 
             </div>  
         </div>
-
         <div class="p-fluid p-formgrid p-grid">
             <!-- <p-toast></p-toast>
                 <p-captcha siteKey="6LcPEisaAAAAACkNcAvHUyfnun2gtvAHfof2ToaN"  (onResponse)="showResponse($event) "></p-captcha> -->
-            <button pButton pRipple (click)="login()" type="button" label="Sign in" class="p-button-rounded" style="width: 100%;"></button><br>
-            <p-button label="สมัครสมาชิกที่นี่" styleClass="p-button-link" routerLink="/register"></p-button>
+            <button pButton pRipple (click)="login()" type="button" label="Sign in" class="p-button-rounded p-button-warning" style="width: 100%;"></button><br>
+            <p-button label="สมัครสมาชิกที่นี่" styleClass="p-button-link" routerLink="/register" ></p-button>
                             <!-- <p-button label="Forgot Password?" styleClass="p-button-link"></p-button> -->
                         <!-- </span>  -->
             <!-- </div>   -->
