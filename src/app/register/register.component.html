@@ -10,7 +10,7 @@
 </style>
 
 <div   class="centerScreen p-grid p-flex-column ">
-    <p-card header="สมัครสมาชิก" subheader="สมัครสมาชิกเพื่อเข้าสู่ระบบ" [style]="{width: '360px'}" styleClass="p-card-shadow-24 bg-light">
+    <p-card header="สมัครสมาชิก" subheader="สมัครสมาชิกเพื่อเข้าสู่ระบบ" [style]="{width: '360px'}" styleClass="card border-warning mb-3">
         <!-- <div class="p-grid p-fluid ">
             <p-header><h1>Login</h1></p-header>
             
@@ -21,7 +21,7 @@
                     <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
                         <span class="p-float-label">
                             <input style="width: 100%;" pInputText id="float-input" type="email" [(ngModel)]="email"> 
-                            <label for="float-input">Email</label>
+                            <label for="float-input">อีเมล</label>
                         </span>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                     <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
                         <span class="p-float-label">
                             <input style="width: 100%;" pInputText id="float-input" type="text" [(ngModel)]="name"> 
-                            <label for="float-input">Name</label>
+                            <label for="float-input">ชื่อ</label>
                         </span>
                 </div>
             </div>
@@ -45,7 +45,7 @@
                     <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
                         <span class="p-float-label">
                             <input pPassword style="width: 100%;" id="float-input"  type="password" pInputText [(ngModel)]="password"> 
-                            <label  for="float-input">Password</label>
+                            <label  for="float-input">รหัสผ่าน</label>
                         </span> 
                 </div> 
             </div>  

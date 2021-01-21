@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +7,29 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+ 
+  // email;
+  // name;
+  // storages=" ";
+  constructor(private router:ActivatedRoute) {
 
-  constructor() { }
+    //this.storage = JSON.parse(localStorage.getItem("storage"));
+    // this.name = this.storage.nameStor;
+    // this.email = this.storage.emailStor;
+    // console.log("new "+this.name);
+    // console.log("new "+this.email);
+   }
 
   ngOnInit(): void {
   }
+
+  // getstorage(){
+  //   if(localStorage.getItem("storage") === null ){
+  //     this.storage = [];
+  //   }
+  //   else{
+  //     this.storage = JSON.parse(localStorage.getItem("storage"));
+  //   }
+  // }
 
 }
