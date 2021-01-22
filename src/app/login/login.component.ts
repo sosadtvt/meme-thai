@@ -30,18 +30,16 @@ export class LoginComponent implements OnInit {
     this.http.post('http://memthainode.comsciproject.com/login/loginUser', json)
               .subscribe(response =>{
                 console.log("Login success");
-               
                 //console.log(response["email"]);
-                // this.storage = {
-                //   nameStor: response["name"],
-                //   emailStor: response["email"]
-                // }
-                //localStorage.setItem('storage',JSON.stringify(this.storage));
+                this.storage = {
+                  nameStor: response["name"],
+                  emailStor: response["email"]
+                }
+                localStorage.setItem('storage',JSON.stringify(this.storage));
                 this.router.navigateByUrl('/profile');
               }, error=>{
                 console.log("Login fail");
               }); 
-
 
     // let json = {email : this.email,password : this.password};  
     // let response = await this.http.post('http://memthainode.comsciproject.com/login/loginUser', json).toPromise();

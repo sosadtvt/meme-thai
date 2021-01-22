@@ -8,16 +8,16 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
  
-  // email;
-  // name;
-  // storages=" ";
+  email;
+  name;
+  storage: any;
   constructor(private router:ActivatedRoute) {
 
-    //this.storage = JSON.parse(localStorage.getItem("storage"));
-    // this.name = this.storage.nameStor;
-    // this.email = this.storage.emailStor;
-    // console.log("new "+this.name);
-    // console.log("new "+this.email);
+    this.storage = JSON.parse(localStorage.getItem("storage") || '{}');
+    this.name = this.storage.nameStor;
+    this.email = this.storage.emailStor;
+    console.log("new "+this.name);
+    console.log("new "+this.email);
    }
 
   ngOnInit(): void {
