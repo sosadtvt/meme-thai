@@ -30,8 +30,9 @@ export class LoginComponent implements OnInit {
     this.http.post('http://memthainode.comsciproject.com/login/loginUser', json)
               .subscribe(response =>{
                 console.log("Login success");
-                //console.log(response["email"]);
+                
                 this.storage = {
+                  idStor: response["id"],
                   nameStor: response["name"],
                   emailStor: response["email"]
                 }

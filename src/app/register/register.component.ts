@@ -26,19 +26,10 @@ export class RegisterComponent implements OnInit {
 
   register(){
     if(this.cap!==undefined){
-        console.log(this.email);
-        console.log(this.name);
-        console.log(this.password);
-        console.log(this.status);
         let json = {email : this.email,name :this.name,password : this.password,status :this.status};
         this.http.post('http://memthainode.comsciproject.com/login/register', json)
                   .subscribe(response =>{
                     console.log("Register success");
-
-                    // this.storage = {
-                    //   nameStor: response["name"],
-                    //   emailStor: response["email"]
-                    // }
 
                     this.router.navigateByUrl('/login');
                   }, error=>{
