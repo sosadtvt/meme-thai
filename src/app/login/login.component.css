@@ -1,0 +1,14 @@
+
+
+.centerScreen{
+    position: absolute;
+    top: 50%;
+    margin-top: -150px;
+    left: 50%;
+    margin-left: -180px;
+}
+
+.bodybg-color {
+    background-color: rgba(134, 129, 98, 0.678);
+}
+

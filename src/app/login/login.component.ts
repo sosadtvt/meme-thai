@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy,ViewEncapsulation, Inject } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import {MessageService} from 'primeng/api';
 import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -7,7 +8,8 @@ import { Router } from '@angular/router';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [MessageService]
+  providers: [MessageService],
+  encapsulation: ViewEncapsulation.None,
 })
 export class LoginComponent implements OnInit {
   
@@ -15,14 +17,18 @@ export class LoginComponent implements OnInit {
   password: any;
   storage: any;
 
-  constructor(private http: HttpClient,private router: Router) {
+  constructor( @Inject(DOCUMENT) private document: Document,private http: HttpClient,private router: Router,) {
   }
   
   ngOnInit() {
+    this.document.body.classList.add('bodybg-color');
     // let response = await this.login();
     // console.log(response);
   }
-
+  ngOnDestroy() {
+    // remove the class form body tag
+   // this.document.body.classList.add('bodybg-color');
+  }
   login(){
     console.log(this.email);
     console.log(this.password);

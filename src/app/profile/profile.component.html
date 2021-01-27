@@ -26,12 +26,43 @@
 <body>
     <div class="card border-warning mb-3">
       <div class="card-header">
-        <div class="pic">
-          <img src="../../assets/images/Lisa.jpg" alt="">
+        <div class="pic img">
+          <img  src="../../assets/images/Lisa.jpg" alt="">
         </div>
+
         <div class="p-fluid p-formgrid p-grid">
-          <button pButton pRipple type="button" label="แก้ไขข้อมุลส่วนตัว" class="p-button-rounded p-button-warning" style="width: 50%;" ></button>
+          <button pButton pRipple type="button" label="แก้ไขข้อมุลส่วนตัว" class="p-button-rounded p-button-warning" style="width: 50%;" (click)="ProfileDisplay('top')" ></button>
+          
       </div>
+      <p-dialog header="แก้ไขข้อมูลส่วนตัว"  [(visible)]="display" [position]="position" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+    [draggable]="false" [resizable]="false">
+    <div class="p-grid p-fluid">
+      <div class="p-col-12 p-md-4">
+          <div class="p-inputgroup">
+                  <span class="p-float-label">
+                      <input style="width: 100%;"  id="float-input" type="text"   [(ngModel)]="editEmail" >
+                      
+                      <!-- <label for="float-input" >{{email}}</label> -->
+                  </span>
+          </div>
+      </div>
+  </div>
+
+  <div class="p-grid p-fluid">
+      <div class="p-col-12 p-md-4">
+          <div class="p-inputgroup">
+              
+                  <span class="p-float-label">
+                      <input style="width: 100%;" id="float-name" type="text" pInputText   [(ngModel)]="editName">
+                      <!-- <label for="float-input">{{name}}</label> -->
+                  </span> 
+          </div> 
+      </div>  
+  </div>
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-check" (click)="editProfile()" label="Ok" styleClass="p-button-text"></p-button>
+        </ng-template>
+    </p-dialog>
         <!-- <div class="name">test</div>
         <div class="desc">test</div> -->
         <div class="name">{{name}}</div>
