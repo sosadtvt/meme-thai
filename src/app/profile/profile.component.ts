@@ -39,9 +39,11 @@ export class ProfileComponent implements OnInit {
   }
   
   editProfile(){
+
       console.log(this.editEmail);
       console.log(this.editName);
-      
+      this.name=this.editName ;
+     this.email=this.editEmail ;
       this.display = false;
   };
   
