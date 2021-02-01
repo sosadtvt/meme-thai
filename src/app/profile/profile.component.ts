@@ -47,13 +47,5 @@ export class ProfileComponent implements OnInit {
       this.display = false;
   };
   
-  // getstorage(){
-  //   if(localStorage.getItem("storage") === null ){
-  //     this.storage = [];
-  //   }
-  //   else{
-  //     this.storage = JSON.parse(localStorage.getItem("storage"));
-  //   }
-  // }
 
 }

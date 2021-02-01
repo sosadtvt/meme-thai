@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy,ViewEncapsulation, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import {MessageService} from 'primeng/api';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Router } from '@angular/router';
-
+import jwt_decode from "jwt-decode";
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,6 +16,9 @@ export class LoginComponent implements OnInit {
   email: any;
   password: any;
   storage: any;
+  decoded: any;
+  header: any;
+  option: any;
 
   constructor( @Inject(DOCUMENT) private document: Document,private http: HttpClient,private router: Router,) {
   }
@@ -36,21 +39,36 @@ export class LoginComponent implements OnInit {
     this.http.post('http://memthainode.comsciproject.com/login/loginUser', json)
               .subscribe(response =>{
                 console.log("Login success");
-                
-                this.storage = {
-                  idStor: response["id"],
-                  nameStor: response["name"],
-                  emailStor: response["email"]
+                this.decoded = jwt_decode(response.toString());
+                console.log("decode = "+this.decoded.id);
+
+                // this.storage = {
+                //   idStor: response["id"],
+                //   nameStor: response["name"],
+                //   emailStor: response["email"]
+                // }
+                //localStorage.setItem('storage',JSON.stringify(this.storage));
+                this.header = new HttpHeaders({
+                  'Content-Type': 'application/json',
+                  'authorization': 'Bearer ' + response.toString()
+                });
+                this.option = {
+                  headers: this.header
                 }
-                localStorage.setItem('storage',JSON.stringify(this.storage));
+                            this.http.get('http://memthainode.comsciproject.com/user/Users', this.option)
+                            .subscribe(response =>{
+                              console.log("SelectAll = "+JSON.stringify(response));
+                              
+                            }, error=>{
+                              console.log(" fail");
+                            }); 
+
+
                 this.router.navigateByUrl('/profile');
               }, error=>{
                 console.log("Login fail");
               }); 
 
-    // let json = {email : this.email,password : this.password};  
-    // let response = await this.http.post('http://memthainode.comsciproject.com/login/loginUser', json).toPromise();
-    // return response;
   }
   
 }
