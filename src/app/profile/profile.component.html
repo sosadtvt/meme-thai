@@ -27,7 +27,11 @@
     <div class="card border-warning mb-3">
       <div class="card-header">
         <div class="pic img">
-          <img  src="../../assets/images/Lisa.jpg" alt="">
+          <img  src="{{this.img}}" alt="">
+        </div>
+        <div>
+          <input type="file" (change)="selectFile($event)">
+          <button type="button" (click)="upload()">Upload</button>
         </div>
 
         <div class="p-fluid p-formgrid p-grid">
@@ -41,7 +45,6 @@
           <div class="p-inputgroup">
                   <span class="p-float-label">
                       <input style="width: 100%;"  id="float-input" type="text" pInputText  [(ngModel)]="editEmail" >
-                      
                       <!-- <label for="float-input" >{{email}}</label> -->
                   </span>
           </div>

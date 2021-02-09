@@ -33,8 +33,6 @@ export class LoginComponent implements OnInit {
    // this.document.body.classList.add('bodybg-color');
   }
   login(){
-    console.log(this.email);
-    console.log(this.password);
     let json = {email : this.email,password : this.password};
     this.http.post('http://memthainode.comsciproject.com/login/loginUser', json)
               .subscribe(response =>{
@@ -48,6 +46,8 @@ export class LoginComponent implements OnInit {
                 //   emailStor: response["email"]
                 // }
                 //localStorage.setItem('storage',JSON.stringify(this.storage));
+
+                //test select jwt
                 this.header = new HttpHeaders({
                   'Content-Type': 'application/json',
                   'authorization': 'Bearer ' + response.toString()
@@ -62,9 +62,9 @@ export class LoginComponent implements OnInit {
                             }, error=>{
                               console.log(" fail");
                             }); 
+                //test select jwt                
 
-
-                this.router.navigateByUrl('/profile');
+                this.router.navigateByUrl('/profile/'+this.decoded.id);
               }, error=>{
                 console.log("Login fail");
               }); 
