@@ -1,11 +1,69 @@
 <app-header></app-header>
 
-<div class="centerScreen p-grid p-flex-column ">
-<p-card header="" [style]="{'width': '25rem', 'margin-bottom': '2em'}" styleClass=" p-card-shadow-24 bg-info">
-    <ng-template pTemplate="header">
-        <p-avatar  image="../../assets/images/Lisa.jpg" size="large" shape="circle"></p-avatar>
-          <!-- <img alt="Card" src="../../assets/images/Lisa.jpg"> -->
-    </ng-template>
-    <p>Test</p>
-</p-card>
-</div>
+<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-6"> <!--โพสต์-->
+            <div class="row">
+                <div class="card ">
+                    <div class="card-header">
+                        <img class="img-thumbnail" src="../../assets/images/Lisa.jpg" alt="Logo" style="width:40px;">&nbsp;&nbsp;
+                        NameTest
+                    </div>
+                    <img
+                        src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
+                        class="card-img-top"
+                        alt="..."
+                    />
+                    <div class="card-body">
+                        <i class="bi bi-heart-fill"></i>&nbsp;&nbsp;
+                        <i class="bi bi-chat-left-dots-fill"></i>
+                        <p class="card-text">
+                            With supporting text below as a natural lead-in to additional content.
+                        </p>
+                        <h5 class="card-title">Special title treatment</h5>
+                        <p class="card-text">
+                            With supporting text below as a natural lead-in to additional content.
+                        </p>
+                    </div>
+                    <div class="card-footer text-muted">2 days ago</div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="card ">
+                    <div class="card-header">Test</div>
+                    <img
+                        src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
+                        class="card-img-top"
+                        alt="..."
+                    />
+                    <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">
+                        With supporting text below as a natural lead-in to additional content.
+                    </p>
+                    </div>
+                    <div class="card-footer text-muted">2 days ago</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <div class="card ">
+                <div class="card-header">Featured</div>
+                <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">
+                    With supporting text below as a natural lead-in to additional content.
+                </p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">2 days ago</div>
+            </div>
+        </div>
+    </div>
+</body>
