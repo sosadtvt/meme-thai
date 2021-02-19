@@ -32,6 +32,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ProfileComponent } from './profile/profile.component';
 import { from } from 'rxjs';
+import { EditComponent } from './edit/edit.component';
 
 const appRutes:Routes=[
 {path: '',component:LoginComponent},
@@ -39,6 +40,7 @@ const appRutes:Routes=[
 {path: 'register',component:RegisterComponent},
 {path: 'home',component:HomeComponent},
 {path: 'profile/:id',component:ProfileComponent},
+{path: 'edit',component:EditComponent},
 
 ];
 
@@ -51,7 +53,8 @@ const appRutes:Routes=[
     RegisterComponent,
     HomeComponent,
     HeaderComponent,
-    ProfileComponent
+    ProfileComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,

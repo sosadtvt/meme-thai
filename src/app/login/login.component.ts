@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
   }
   
   ngOnInit() {
-    this.document.body.classList.add('bodybg-color');
+    // this.document.body.classList.add('bodybg-color');
     // let response = await this.login();
     // console.log(response);
   }

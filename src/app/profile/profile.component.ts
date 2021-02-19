@@ -12,14 +12,6 @@ export class ProfileComponent implements OnInit {
   img: any;
   id;
   
-  email: any;
-  name: any;
-  editEmail:any;
-  editName:any;
-  //id: any;
-  storage: any;
-  display: boolean = false;
-  position: any;
   constructor(private router:ActivatedRoute,private http: HttpClient) {
     this.id = router.snapshot.params['id'];
     this.http.get('http://memthainode.comsciproject.com/user/Users/'+this.id)
@@ -31,13 +23,6 @@ export class ProfileComponent implements OnInit {
                             }, error=>{
                               console.log("fail");
                             }); 
-
-    // this.storage = JSON.parse(localStorage.getItem("storage") || '{}');
-    // this.name = this.storage.nameStor;
-    // this.email = this.storage.emailStor;
-    // this.id = this.storage.idStor;
-    // console.log("new "+this.name);
-    // console.log("new "+this.email);
    }
 
   selectedfile: any;
@@ -58,25 +43,6 @@ export class ProfileComponent implements OnInit {
               }); 
   }
 
-  ngOnInit(): void {
-
-  }
-  
-  ProfileDisplay(position: string){
-    // console.log(position);
-    // this.editName= this.name;
-    // this.editEmail= this.email;
-    // this.position = position;
-    // this.display = true;
-  }
-  
-  editProfile(){
-
-    //   console.log(this.editEmail);
-    //   console.log(this.editName);
-    //   this.name=this.editName ;
-    //  this.email=this.editEmail ;
-    //   this.display = false;
-  };
+  ngOnInit(): void {}
   
 }
