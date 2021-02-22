@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   decoded: any;
   header: any;
   option: any;
+  
 
   constructor( @Inject(DOCUMENT) private document: Document,private http: HttpClient,private router: Router,) {
   }
@@ -38,30 +39,28 @@ export class LoginComponent implements OnInit {
               .subscribe(response =>{
                 console.log("Login success");
                 this.decoded = jwt_decode(response.toString());
-                console.log("decode = "+this.decoded.id);
+                //console.log("ressssssssss = "+response);
 
                 // this.storage = {
-                //   idStor: response["id"],
-                //   nameStor: response["name"],
-                //   emailStor: response["email"]
+                //   responseNew: response,
                 // }
-                //localStorage.setItem('storage',JSON.stringify(this.storage));
+                localStorage.setItem('TOKEN',response.toString());
 
                 //test select jwt
-                this.header = new HttpHeaders({
-                  'Content-Type': 'application/json',
-                  'authorization': 'Bearer ' + response.toString()
-                });
-                this.option = {
-                  headers: this.header
-                }
-                            this.http.get('http://memthainode.comsciproject.com/user/Users', this.option)
-                            .subscribe(response =>{
-                              console.log("SelectAll = "+JSON.stringify(response));
-                              
-                            }, error=>{
-                              console.log(" fail");
-                            }); 
+                  // this.header = new HttpHeaders({
+                  //   'Content-Type': 'application/json',
+                  //   'authorization': 'Bearer ' + response.toString()
+                  // });
+                  // this.option = {
+                  //   headers: this.header
+                  // }
+                  //             this.http.get('http://memthainode.comsciproject.com/user/Users', this.option)
+                  //             .subscribe(response =>{
+                  //               console.log("SelectAll = "+JSON.stringify(response));
+                                
+                  //             }, error=>{
+                  //               console.log(" fail");
+                  //             }); 
                 //test select jwt                
 
                 this.router.navigateByUrl('/profile/'+this.decoded.id);

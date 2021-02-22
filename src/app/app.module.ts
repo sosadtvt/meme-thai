@@ -41,6 +41,7 @@ const appRutes:Routes=[
 {path: 'home',component:HomeComponent},
 {path: 'profile/:id',component:ProfileComponent},
 {path: 'edit',component:EditComponent},
+{path: 'header',component:HeaderComponent},
 
 ];
 

@@ -9,9 +9,15 @@ import {MegaMenuItem} from 'primeng/api';
   
 })
 export class HeaderComponent implements OnInit {
-
-  constructor (){}
-   ngOnInit(){}
+  name:any;
+  img:any;
+  constructor (){
+    
+  }
+   ngOnInit(){
+    this.name = localStorage.getItem('TOKENNAME');
+    this.img = localStorage.getItem('TOKENIMAGE');
+   }
 //    items: MenuItem[];
    
 //    ngOnInit() {

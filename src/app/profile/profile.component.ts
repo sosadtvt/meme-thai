@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile',
@@ -11,19 +11,38 @@ export class ProfileComponent implements OnInit {
 
   img: any;
   id;
-  
+  name: any;
+  header: any;
+  option: any;
+
   constructor(private router:ActivatedRoute,private http: HttpClient) {
     this.id = router.snapshot.params['id'];
-    this.http.get('http://memthainode.comsciproject.com/user/Users/'+this.id)
-                            .subscribe(response =>{
-                              console.log("Select = "+JSON.stringify(response));
+   }
+  ngOnInit(): void {
+    let token = localStorage.getItem('TOKEN');
+    console.log("TOOOOOO"+token);
 
-                              console.log("Select img = "+response[0].image);
+    this.header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'authorization': 'Bearer ' + token
+    });
+    this.option = {
+      headers: this.header
+    }
+    this.http.get('http://memthainode.comsciproject.com/user/Users/'+this.id,this.option)
+                            .subscribe(response =>{
+                              //console.log("Select = "+JSON.stringify(response));
+                              //console.log("Select img = "+response[0].image);
+                              //console.log("NamLocalStorage = "+response[0].name);
+                              localStorage.setItem('TOKENNAME',response[0].name.toString());
+                              localStorage.setItem('TOKENIMAGE',response[0].image.toString());
                               this.img = response[0].image;
+                              this.name = localStorage.getItem('TOKENNAME');
+                              
                             }, error=>{
                               console.log("fail");
                             }); 
-   }
+  }
 
   selectedfile: any;
   selectFile(event: any){
@@ -43,6 +62,6 @@ export class ProfileComponent implements OnInit {
               }); 
   }
 
-  ngOnInit(): void {}
+
   
 }
