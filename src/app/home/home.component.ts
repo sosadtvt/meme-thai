@@ -8,7 +8,7 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
- 
+  itemEdit: any;
   name: any;
   img: any;
   option: any;
@@ -16,7 +16,13 @@ export class HomeComponent implements OnInit {
   iduser: any;
   caption: any;
   responseNew: any;
-  constructor(private router:ActivatedRoute,private http: HttpClient) { }
+  
+
+  displayEditPost:any;
+
+  constructor(private router:ActivatedRoute,private http: HttpClient) {
+    
+   }
 
   ngOnInit(): void {
     this.name = localStorage.getItem('TOKENNAME');
@@ -59,4 +65,40 @@ export class HomeComponent implements OnInit {
               }); 
   }
 
+  EditMyPost(item: any){
+    this.itemEdit = item;
+    this.caption = item.caption;
+    this.displayEditPost = true;
+  }
+
+  Editcaption(){
+    this.displayEditPost = false;
+    let json = {id : this.itemEdit.idpost,caption :this.caption};
+    this.http.post('http://memthainode.comsciproject.com/post/editcaption',json)
+              .subscribe(response =>{
+                console.log("editcaption success");
+                location.reload();
+              }, error=>{
+                console.log("editcaption fail");
+              }); 
+  }
+
+  DeletePost(){
+    let json = {idpost : this.itemEdit.idpost};
+    let token2 = localStorage.getItem('TOKEN');
+    this.header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'authorization': 'Bearer ' + token2
+    });
+    this.option = {
+      headers: this.header
+    }
+    this.http.post('http://memthainode.comsciproject.com/post/delete',json,this.option)
+              .subscribe(response =>{
+                console.log("delete success");
+                location.reload();
+              }, error=>{
+                console.log("delete fail");
+              }); 
+  }
 }

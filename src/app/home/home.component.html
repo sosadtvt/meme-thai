@@ -36,7 +36,8 @@
                         />
                         <div class="card-body">
                             <i class="bi bi-heart-fill"></i>&nbsp;&nbsp;
-                            <i class="bi bi-chat-left-dots-fill"></i>
+                            <i class="bi bi-chat-left-dots-fill"></i>&nbsp;&nbsp;
+                            <i class="bi bi-pen-fill" (click)="EditMyPost(item)"></i>
                             <p class="card-text">
                                {{item.caption}}
                             </p>
@@ -44,9 +45,8 @@
                         <div class="card-footer text-muted">....</div>
                     </div>
                     <br>
+                    
                 </div>
-               
-                
             </div>
         </div> <!--โพสต์-->
         <div class="col-sm-3">
@@ -63,4 +63,16 @@
             </div>
         </div>
     </div>
+
+
+    <p-dialog header="แก้ไขโพสต์" [(visible)]="displayEditPost" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <ng-template pTemplate>
+            <input type="text" pInputText id="float-input" [(ngModel)]="caption">
+            <!-- <h1>{{this.itemEdit.caption}}</h1> -->
+            <p-button icon="pi pi-check" (click)="Editcaption()" label="Ok" styleClass="p-button-text" ></p-button>
+            <p (click)="DeletePost()">ลบโพสต์</p>
+        </ng-template>
+        
+    </p-dialog>
+
 </body>

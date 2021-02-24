@@ -8,18 +8,23 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+  item:any;
   img: any;
   id;
   name: any;
   header: any;
   option: any;
+  responseNew: any;
+  iduser: any;
+
+  displayBasic2: any;
 
   constructor(private router:ActivatedRoute,private http: HttpClient) {
     this.id = router.snapshot.params['id'];
    }
   ngOnInit(): void {
     let token = localStorage.getItem('TOKEN');
+    this.iduser = localStorage.getItem('TOKENIDUSER');
 
     this.header = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -42,6 +47,21 @@ export class ProfileComponent implements OnInit {
                             }, error=>{
                               console.log("fail");
                             }); 
+
+  this.header = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'authorization': 'Bearer ' + token
+  });
+  this.option = {
+    headers: this.header
+  }
+  this.http.get('http://memthainode.comsciproject.com/post/selectpostid/'+this.iduser,this.option)
+                          .subscribe(response =>{
+                            this.responseNew = response;
+                            console.log(response);
+                          }, error=>{
+                            console.log("fail");
+                          }); 
   }
 
   selectedfile: any;
@@ -62,6 +82,9 @@ export class ProfileComponent implements OnInit {
               }); 
   }
 
+  showBasicDialog2(){
+    this.displayBasic2 = true;
+  }
 
   
 }
