@@ -6,52 +6,49 @@
 <body>
     <div class="row">
         <div class="col-sm-2"></div>
-        <div class="col-sm-6"> <!--โพสต์-->
-            <div class="row">
-                <div class="card ">
-                    <div class="card-header">
-                        <img class="img-thumbnail" src="../../assets/images/Lisa.jpg" alt="Logo" style="width:40px;">&nbsp;&nbsp;
-                        NameTest
-                    </div>
-                    <img
-                        src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
-                        class="card-img-top"
-                        alt="..."
-                    />
-                    <div class="card-body">
-                        <i class="bi bi-heart-fill"></i>&nbsp;&nbsp;
-                        <i class="bi bi-chat-left-dots-fill"></i>
-                        <p class="card-text">
-                            With supporting text below as a natural lead-in to additional content.
-                        </p>
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">
-                            With supporting text below as a natural lead-in to additional content.
-                            <!-- <code>.was-validated</code> -->
-                        </p>
-                    </div>
-                    <div class="card-footer text-muted">2 days ago</div>
-                </div>
-            </div>
-            <br>
-            <div class="row">
-                <div class="card ">
-                    <div class="card-header">Test</div>
-                    <img
-                        src="https://mdbootstrap.com/img/new/standard/city/041.jpg"
-                        class="card-img-top"
-                        alt="..."
-                    />
-                    <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">
-                        With supporting text below as a natural lead-in to additional content.
-                    </p>
-                    </div>
-                    <div class="card-footer text-muted">2 days ago</div>
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h1>สร้างโพสต์</h1>
+                    <label for="fname">คำบรรยายภาพ</label>&nbsp;
+                    <input type="text" pInputText id="float-input" [(ngModel)]="caption"><br>
+					<input type="file" (change)="selectFile($event)">
+					<button type="button" (click)="upload()">Post</button>
                 </div>
             </div>
         </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-6"> <!--โพสต์-->
+            <div class="row" >
+                <div class="col-sm-12" *ngFor="let item of responseNew; let i = index">
+                    <div class="card ">
+                        <div class="card-header">
+                            <img class="img-thumbnail" src="{{this.img}}" alt="Logo" style="width:40px;">&nbsp;&nbsp;
+                            {{name}}
+                        </div>
+                        <img
+                            src="{{item.image}}"
+                            class="card-img-top"
+                            alt="..."
+                        />
+                        <div class="card-body">
+                            <i class="bi bi-heart-fill"></i>&nbsp;&nbsp;
+                            <i class="bi bi-chat-left-dots-fill"></i>
+                            <p class="card-text">
+                               {{item.caption}}
+                            </p>
+                        </div>
+                        <div class="card-footer text-muted">....</div>
+                    </div>
+                    <br>
+                </div>
+               
+                
+            </div>
+        </div> <!--โพสต์-->
         <div class="col-sm-3">
             <div class="card ">
                 <div class="card-header">Featured</div>

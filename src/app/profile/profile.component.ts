@@ -20,7 +20,6 @@ export class ProfileComponent implements OnInit {
    }
   ngOnInit(): void {
     let token = localStorage.getItem('TOKEN');
-    console.log("TOOOOOO"+token);
 
     this.header = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -36,6 +35,7 @@ export class ProfileComponent implements OnInit {
                               //console.log("NamLocalStorage = "+response[0].name);
                               localStorage.setItem('TOKENNAME',response[0].name.toString());
                               localStorage.setItem('TOKENIMAGE',response[0].image.toString());
+                              localStorage.setItem('TOKENIDUSER',response[0].id.toString());
                               this.img = response[0].image;
                               this.name = localStorage.getItem('TOKENNAME');
                               
