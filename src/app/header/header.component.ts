@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges , OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {MegaMenuItem} from 'primeng/api';
 @Component({
@@ -12,13 +12,27 @@ export class HeaderComponent implements OnInit {
   name:any;
   img:any;
   iduser:any;
+  
   constructor (){
-    
-  }
-   ngOnInit(){
+    console.log("Header constructor");
     this.name = localStorage.getItem('TOKENNAME');
     this.img = localStorage.getItem('TOKENIMAGE');
     this.iduser = localStorage.getItem('TOKENIDUSER');
+    console.log(this.name);
+  }
+  ngOnChanges () {
+    console.log("Header OnChanges");
+    this.name = localStorage.getItem('TOKENNAME');
+    this.img = localStorage.getItem('TOKENIMAGE');
+    this.iduser = localStorage.getItem('TOKENIDUSER');
+    console.log(this.name);
+  }
+   ngOnInit(){
+    console.log("Header OnInit");;
+    // this.name = localStorage.getItem('TOKENNAME');
+    // this.img = localStorage.getItem('TOKENIMAGE');
+    // this.iduser = localStorage.getItem('TOKENIDUSER');
+     console.log(this.name);
    }
    clicklogout(){
      localStorage.removeItem('TOKENNAME');
@@ -26,5 +40,6 @@ export class HeaderComponent implements OnInit {
      localStorage.removeItem('TOKENIDUSER');
      localStorage.removeItem('TOKEN');
    }
+   
 }
 

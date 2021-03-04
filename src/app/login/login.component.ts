@@ -19,7 +19,10 @@ export class LoginComponent implements OnInit {
   decoded: any;
   header: any;
   option: any;
-  
+  item:any;
+  img: any;
+  name: any;
+ 
 
   constructor( @Inject(DOCUMENT) private document: Document,private http: HttpClient,private router: Router,) {
   }
@@ -40,12 +43,10 @@ export class LoginComponent implements OnInit {
                 console.log("Login success");
                 this.decoded = jwt_decode(response.toString());
                 //console.log("ressssssssss = "+response);
-
                 // this.storage = {
                 //   responseNew: response,
                 // }
                 localStorage.setItem('TOKEN',response.toString());
-
                 //test select jwt
                   // this.header = new HttpHeaders({
                   //   'Content-Type': 'application/json',
@@ -61,9 +62,16 @@ export class LoginComponent implements OnInit {
                   //             }, error=>{
                   //               console.log(" fail");
                   //             }); 
+                
                 //test select jwt                
+                // this.router.navigateByUrl('/home');
+                // localStorage.setItem('TOKENNAME',response[0].name.toString());
+                // localStorage.setItem('TOKENIMAGE',response[0].image.toString());
+                // localStorage.setItem('TOKENIDUSER',response[0].id.toString());
+                // this.img = response[0].image;
+                // this.name = localStorage.getItem('TOKENNAME');
+                 this.router.navigateByUrl('/profile/'+this.decoded.id);
 
-                this.router.navigateByUrl('/profile/'+this.decoded.id);
               }, error=>{
                 console.log("Login fail");
               }); 

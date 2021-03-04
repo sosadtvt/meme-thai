@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   option: any;
   responseNew: any;
   iduser: any;
+  ponse:any;
 
   displayBasic2: any;
 
@@ -24,7 +25,7 @@ export class ProfileComponent implements OnInit {
    }
   ngOnInit(): void {
     let token = localStorage.getItem('TOKEN');
-    this.iduser = localStorage.getItem('TOKENIDUSER');
+    // this.iduser = localStorage.getItem('TOKENIDUSER'); 
 
     this.header = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -33,6 +34,7 @@ export class ProfileComponent implements OnInit {
     this.option = {
       headers: this.header
     }
+     
     this.http.get('http://memthainode.comsciproject.com/user/Users/'+this.id,this.option)
                             .subscribe(response =>{
                               //console.log("Select = "+JSON.stringify(response));
@@ -41,9 +43,11 @@ export class ProfileComponent implements OnInit {
                               localStorage.setItem('TOKENNAME',response[0].name.toString());
                               localStorage.setItem('TOKENIMAGE',response[0].image.toString());
                               localStorage.setItem('TOKENIDUSER',response[0].id.toString());
-                              this.img = response[0].image;
-                              this.name = localStorage.getItem('TOKENNAME');
+                              this.name = localStorage.getItem('TOKENNAME'); 
+                              this.img = response[0].image; 
                               
+                              // console.log("Response[0]");
+                              // console.log(response[0]);
                             }, error=>{
                               console.log("fail");
                             }); 
@@ -52,16 +56,19 @@ export class ProfileComponent implements OnInit {
     'Content-Type': 'application/json',
     'authorization': 'Bearer ' + token
   });
+
   this.option = {
     headers: this.header
   }
-  this.http.get('http://memthainode.comsciproject.com/post/selectpostid/'+this.iduser,this.option)
+  
+  this.http.get('http://memthainode.comsciproject.com/post/selectpostid/'+this.id,this.option)
                           .subscribe(response =>{
                             this.responseNew = response;
-                            console.log(response);
+                            console.log("responseNew");
+                            console.log(this.responseNew);
                           }, error=>{
                             console.log("fail");
-                          }); 
+                          });
   }
 
   selectedfile: any;

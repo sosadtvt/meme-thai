@@ -25,8 +25,8 @@
             <div class="row" >
                 <div class="col-sm-12" *ngFor="let item of responseNew; let i = index">
                     <div class="card ">
-                        <div class="card-header">
-                            <img class="img-thumbnail" src="{{this.img}}" alt="Logo" style="width:40px;">&nbsp;&nbsp;
+                        <div class="card-header" >
+                            <img routerLink="/profile/{{iduser}}" class="img-thumbnail" src="{{this.img}}" alt="Logo" style="width:40px;" >&nbsp;&nbsp;
                             {{name}}
                         </div>
                         <img
