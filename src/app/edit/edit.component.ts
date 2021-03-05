@@ -17,15 +17,16 @@ export class EditComponent implements OnInit {
   ponse:any;
 
   displayBasic2: any;
-  constructor(private router:ActivatedRoute,private http: HttpClient) {
+  constructor(private router:ActivatedRoute,private http: HttpClient,private routers: Router) {
+    
+   }
+
+  ngOnInit(): void {
     console.log("Header constructor");
     this.name = localStorage.getItem('TOKENNAME');
     this.img = localStorage.getItem('TOKENIMAGE');
     this.iduser = localStorage.getItem('TOKENIDUSER');
     console.log(this.iduser);
-   }
-
-  ngOnInit(): void {
   }
   
   selectedfile: any;
@@ -40,14 +41,11 @@ export class EditComponent implements OnInit {
     this.http.post('http://memthainode.comsciproject.com/upload/profile', fd)
               .subscribe(response =>{
                 console.log("Upload success");
-                location.reload();
+                //location.reload();
+                this.routers.navigateByUrl('/profile/'+this.iduser);
               }, error=>{
                 console.log("Upload fail");
               }); 
-  }
-
-  showBasicDialog2(){
-    this.displayBasic2 = true;
   }
 
 }
