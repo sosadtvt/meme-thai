@@ -23,6 +23,7 @@ import {DialogModule} from 'primeng/dialog';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { NgxCaptchaModule } from 'ngx-captcha';
+import {AutoCompleteModule} from 'primeng/autocomplete';
  
 
 ////////////////Router///////////
@@ -76,7 +77,8 @@ const appRutes:Routes=[
     RouterModule.forRoot(appRutes),
     FormsModule,
     HttpClientModule,
-    NgxCaptchaModule
+    NgxCaptchaModule,
+    AutoCompleteModule
     //CaptchaModule
     
     //InputTextModule

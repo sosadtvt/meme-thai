@@ -42,35 +42,11 @@ export class LoginComponent implements OnInit {
               .subscribe(response =>{
                 console.log("Login success");
                 this.decoded = jwt_decode(response.toString());
-                //console.log("ressssssssss = "+response);
-                // this.storage = {
-                //   responseNew: response,
-                // }
-                localStorage.setItem('TOKEN',response.toString());
-                //test select jwt
-                  // this.header = new HttpHeaders({
-                  //   'Content-Type': 'application/json',
-                  //   'authorization': 'Bearer ' + response.toString()
-                  // });
-                  // this.option = {
-                  //   headers: this.header
-                  // }
-                  //             this.http.get('http://memthainode.comsciproject.com/user/Users', this.option)
-                  //             .subscribe(response =>{
-                  //               console.log("SelectAll = "+JSON.stringify(response));
-                                
-                  //             }, error=>{
-                  //               console.log(" fail");
-                  //             }); 
                 
-                //test select jwt                
-                // this.router.navigateByUrl('/home');
-                // localStorage.setItem('TOKENNAME',response[0].name.toString());
-                // localStorage.setItem('TOKENIMAGE',response[0].image.toString());
-                // localStorage.setItem('TOKENIDUSER',response[0].id.toString());
-                // this.img = response[0].image;
-                // this.name = localStorage.getItem('TOKENNAME');
-                 this.router.navigateByUrl('/profile/'+this.decoded.id);
+                localStorage.setItem('TOKENIDUSER',this.decoded.id);
+                localStorage.setItem('TOKEN',response.toString());
+               
+                this.router.navigateByUrl('/profile/'+this.decoded.id);
 
               }, error=>{
                 console.log("Login fail");

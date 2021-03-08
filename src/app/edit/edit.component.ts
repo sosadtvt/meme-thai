@@ -22,11 +22,10 @@ export class EditComponent implements OnInit {
    }
 
   ngOnInit(): void {
-    console.log("Header constructor");
     this.name = localStorage.getItem('TOKENNAME');
     this.img = localStorage.getItem('TOKENIMAGE');
     this.iduser = localStorage.getItem('TOKENIDUSER');
-    console.log(this.iduser);
+    console.log("id = "+this.iduser);
   }
   
   selectedfile: any;
@@ -41,7 +40,6 @@ export class EditComponent implements OnInit {
     this.http.post('http://memthainode.comsciproject.com/upload/profile', fd)
               .subscribe(response =>{
                 console.log("Upload success");
-                //location.reload();
                 this.routers.navigateByUrl('/profile/'+this.iduser);
               }, error=>{
                 console.log("Upload fail");

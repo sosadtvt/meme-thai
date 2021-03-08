@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
     this.http.get('http://memthainode.comsciproject.com/post/selectpostid/'+this.iduser,this.option)
                             .subscribe(response =>{
                               this.responseNew = response;
-                              console.log(response);
+                              //console.log(response);
                             }, error=>{
                               console.log("fail");
                             }); 

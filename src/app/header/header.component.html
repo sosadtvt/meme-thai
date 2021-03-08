@@ -11,6 +11,21 @@
     <nav>
       <ul >
             <li class="logo">มีมไทย</li>
+
+            <p-autoComplete [(ngModel)]="selectedCountry" [suggestions]="outputfiltered" (completeMethod)="filterCountry($event)" field="name" [minLength]="1">
+
+                <ng-template let-selectedCountry pTemplate="item">
+                  <div class="country-item">
+                     <div (click)="clickk(selectedCountry.id)">
+                        <div>
+                          {{selectedCountry.name}}
+                        </div>
+                     </div>
+                  </div>
+                </ng-template>
+
+            </p-autoComplete>
+
             <li class="items align-items-sm-center"> <img class="img-thumbnail" src="{{this.img}}" alt="Logo" style="width:40px;" routerLink="/profile/{{iduser}}">&nbsp;&nbsp; {{name}}</li>
             <li class="items align-items-md-end"><i class="bi bi-house-door-fill" routerLink="/home"></i></li>
             <li class="items align-items-md-end"><i class="bi bi-heart-fill" ></i></li>

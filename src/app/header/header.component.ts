@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnChanges , OnInit } from '@angular/core';
 import {MenuItem} from 'primeng/api';
 import {MegaMenuItem} from 'primeng/api';
@@ -12,28 +13,60 @@ export class HeaderComponent implements OnInit {
   name:any;
   img:any;
   iduser:any;
-  
-  constructor (){
-    console.log("Header constructor");
+  option: any;
+  header: any;
+  token:any;
+
+  selectedCountry: any;
+  responseSearch: any;
+
+  constructor (private http: HttpClient){
     this.name = localStorage.getItem('TOKENNAME');
     this.img = localStorage.getItem('TOKENIMAGE');
     this.iduser = localStorage.getItem('TOKENIDUSER');
-    console.log(this.name);
+    this.token = localStorage.getItem('TOKEN');
   }
-  ngOnChanges () {
-    console.log("Header OnChanges");
-    this.name = localStorage.getItem('TOKENNAME');
-    this.img = localStorage.getItem('TOKENIMAGE');
-    this.iduser = localStorage.getItem('TOKENIDUSER');
-    console.log(this.name);
-  }
+
    ngOnInit(){
-    console.log("Header OnInit");;
-    // this.name = localStorage.getItem('TOKENNAME');
-    // this.img = localStorage.getItem('TOKENIMAGE');
-    // this.iduser = localStorage.getItem('TOKENIDUSER');
-     console.log(this.name);
+   
    }
+   outputfiltered: any;
+
+   filterCountry(event: any) {
+    let filtered : any[] = [];
+    let query = event.query;
+    let data;
+          this.header = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'authorization': 'Bearer ' + this.token
+          });
+          this.option = {
+            headers: this.header
+          }
+          this.http.get('http://memthainode.comsciproject.com/user/search/'+query,this.option)
+                                  .subscribe(response =>{
+                                    var keys = Object.keys(response);
+                                    var len = keys.length;
+                                    console.log("len = "+len);
+                                    console.log("string = "+JSON.stringify(response));
+                                    for(let i = 0 ; i < len ; i++){
+                                      console.log("new = "+response[i].name);
+                                      data = {
+                                        "name": response[i].name,
+                                        "id": response[i].id
+                                      }
+                                      filtered.push(data);
+                                    }
+                                    this.outputfiltered = filtered;
+                                  }, error=>{
+                                    console.log("fail");
+                                  }); 
+}
+clickk(id:any){
+  console.log("ID = "+id);
+  window.location.href = "/profile/"+id;
+}
+
    clicklogout(){
      localStorage.removeItem('TOKENNAME');
      localStorage.removeItem('TOKENIMAGE');

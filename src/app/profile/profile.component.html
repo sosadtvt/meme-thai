@@ -9,11 +9,17 @@
 		<div class="col-sm-8">
 			<div class="card">
                 <div class="card-body" >
-					<h1>Hi!!&nbsp;{{name}}</h1>
-					<img  src="{{this.img}}" class="img-thumbnail" alt="Cinque Terre" >
-					<!-- <input type="file" (change)="selectFile($event)"  >
-					<button type="button" pButton pRipple class="p-button-raised" label="Upload" (click)="upload()" ></button> -->
-					<button type="button" pButton pRipple class="p-button-raised" label="Edit" routerLink="/edit"></button>
+					<div class="row">
+						<div class="col-sm-4">	<img  src="{{this.img}}" class="img-thumbnail" alt="Cinque Terre" ></div>
+						<div class="col-sm-4"><h3>Hi!!&nbsp;{{name}}</h3></div>
+						<div class="col-sm-4">
+							<div *ngIf="this.iduser==this.id">
+							<!-- <div > -->
+							<button type="button" pButton pRipple class="p-button-raised" label="Edit" routerLink="/edit"></button>
+							</div>
+						</div>
+						
+					</div>
 				</div>
             </div>
 		</div>
