@@ -15,6 +15,7 @@
                             <label for="float-input">อีเมล</label>
                         </span>
                 </div>
+                <font color="red" *ngIf="this.checkerrorRegister==1">มีผู้ใช้อีเมลนี้แล้ว</font>
             </div>
         </div>
 
@@ -41,7 +42,7 @@
                 </div> 
             </div>  
             <ngx-recaptcha2 #captchaElem [siteKey]="siteKey" [(ngModel)]="cap">
-            </ngx-recaptcha2> <br>
+            </ngx-recaptcha2> <font color="red" *ngIf="this.checkerrorcaptcha==1">กรุณายืนยันความเป็นมนุษย์</font><br>
         </div>
         <div class="p-fluid p-formgrid p-grid">
             <button pButton pRipple type="button" label="สมัคร" class="p-button-rounded p-button-warning" style="width: 100%;" (click)="register()"></button>

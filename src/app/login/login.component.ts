@@ -23,8 +23,9 @@ export class LoginComponent implements OnInit {
   img: any;
   name: any;
  
-
+  checkerrorLogin:any;
   constructor( @Inject(DOCUMENT) private document: Document,private http: HttpClient,private router: Router,) {
+    this.checkerrorLogin = 0;
   }
   
   ngOnInit() {
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
     this.http.post('http://memthainode.comsciproject.com/login/loginUser', json)
               .subscribe(response =>{
                 console.log("Login success");
+                this.checkerrorLogin = 0;
                 this.decoded = jwt_decode(response.toString());
                 
                 localStorage.setItem('TOKENIDUSER',this.decoded.id);
@@ -49,10 +51,11 @@ export class LoginComponent implements OnInit {
                 this.router.navigateByUrl('/profile/'+this.decoded.id);
 
               }, error=>{
+                this.checkerrorLogin = 1;
                 console.log("Login fail");
               }); 
-
   }
+  
   
 }
 

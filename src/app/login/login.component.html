@@ -27,8 +27,10 @@
                             <label for="float-input">รหัสผ่าน</label>
                         </span> 
                 </div> 
+                <font color="red" *ngIf="this.checkerrorLogin==1">อีเมลหรือรหัสผ่านไม่ถูกต้อง</font>
             </div>  
         </div>
+        
         <div class="p-fluid p-formgrid p-grid">
         
             <button pButton pRipple (click)="login()" type="button" label="เข้าสู่ระบบ" class="p-button-rounded p-button-warning" style="width: 100%;"></button><br><br>
