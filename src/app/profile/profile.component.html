@@ -12,10 +12,19 @@
 					<div class="row">
 						<div class="col-sm-4">	<img  src="{{this.img}}" class="img-thumbnail" alt="Cinque Terre" ></div>
 						<div class="col-sm-4"><h3>Hi!!&nbsp;{{name}}</h3></div>
-						<div class="col-sm-4">
+						<div class="col-sm-2" *ngIf="this.iduser!=this.id">
+							<div *ngIf="this.checkF==0">
+								<button pButton pRipple type="button" label="ติดตาม" class="p-button-raised p-button-warning" (click)="follow()"></button>
+							</div>
+							<div *ngIf="this.checkF==1">
+								<button pButton pRipple type="button" label="ยกเลิกติดตาม" class="p-button-raised p-button-warning"  (click)="unfollow()"></button>
+							</div>
+							
+						</div>
+						<div class="col-sm-2">
 							<div *ngIf="this.iduser==this.id">
 							<!-- <div > -->
-							<button type="button" pButton pRipple class="p-button-raised" label="Edit" routerLink="/edit"></button>
+							<button type="button" pButton pRipple class="p-button-raised p-button-warning" label="Edit" routerLink="/edit"></button>
 							</div>
 						</div>
 						
@@ -31,7 +40,7 @@
 	<div class="row"> 
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
-			<div class="row" >
+			<div class="row" *ngIf="(this.checkF==1)||(this.id==this.iduser)">
 				<div class="col-sm-3" *ngFor="let item of responseNew; let i = index"   > 
 					<img    
 							src="{{item.image}}"

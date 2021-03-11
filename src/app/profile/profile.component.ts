@@ -20,6 +20,8 @@ export class ProfileComponent implements OnInit {
 
   displayBasic2: any;
 
+  checkF:any;
+
   constructor(private router:ActivatedRoute,private http: HttpClient) {
     this.id = router.snapshot.params['id'];
    }
@@ -67,14 +69,46 @@ export class ProfileComponent implements OnInit {
     this.option = {
       headers: this.header
     }
-    this.http.get('http://memthainode.comsciproject.com/post/selectpostid/'+this.id,this.option)
+    this.http.get('http://memthainode.comsciproject.com/post/selectPostId/'+this.id,this.option)
                             .subscribe(response =>{
                               this.responseNew = response;
                             }, error=>{
                               console.log("fail");
                             });
-////////////////////////////<<>>//////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////<<เช็คติดตาม>>//////////////////////////////////////////////////////////////////////////////////////  
+    let json = {IDmy:this.iduser,IDfollowing:this.id}
+    this.http.post('http://memthainode.comsciproject.com/follow/checkfollow',json)
+    .subscribe(response =>{
+      console.log("Check = "+response);
+      console.log("IDmy = "+this.iduser);
+      console.log("IDfollowing = "+this.id);
+      this.checkF = response;
+    }, error=>{
+      console.log("CheckFollow Error");
+    });
+}
+
+  follow(){
+    let json = {IDmy:this.iduser,IDfollowing:this.id}
+    this.http.post('http://memthainode.comsciproject.com/follow/follow',json)
+    .subscribe(response =>{
+      console.log("ติดตามแล้ว");
+      location.reload();
+    }, error=>{
+      console.log("ติดตามไม่สำเร็จ");
+    });
   }
+  unfollow(){
+    let json = {IDmy:this.iduser,IDfollowing:this.id}
+    this.http.post('http://memthainode.comsciproject.com/follow/unfollow',json)
+    .subscribe(response =>{
+      console.log("ยกเลิกติดตามแล้ว");
+      location.reload();
+    }, error=>{
+      console.log("ยกเลิกติดตามไม่สำเร็จ");
+    });
+  }
+
   showBasicDialog2(){
     this.displayBasic2 = true;
   }

@@ -37,10 +37,9 @@ export class HomeComponent implements OnInit {
     this.option = {
       headers: this.header
     }
-    this.http.get('http://memthainode.comsciproject.com/post/selectpostid/'+this.iduser,this.option)
+    this.http.get('http://memthainode.comsciproject.com/post/selectPostversion2/'+this.iduser,this.option)
                             .subscribe(response =>{
                               this.responseNew = response;
-                              //console.log(response);
                             }, error=>{
                               console.log("fail");
                             }); 
