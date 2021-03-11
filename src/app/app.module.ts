@@ -24,7 +24,12 @@ import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import {AutoCompleteModule} from 'primeng/autocomplete';
- 
+import {FileUploadModule} from 'primeng/fileupload';
+import {InputTextareaModule} from 'primeng/inputtextarea';
+import {RippleModule} from 'primeng/ripple';
+import {ToastModule} from 'primeng/toast';
+
+
 
 ////////////////Router///////////
 import{HeaderComponent} from'./header/header.component';
@@ -78,7 +83,11 @@ const appRutes:Routes=[
     FormsModule,
     HttpClientModule,
     NgxCaptchaModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    FileUploadModule,
+    InputTextareaModule,
+    RippleModule,
+    ToastModule
     //CaptchaModule
     
     //InputTextModule

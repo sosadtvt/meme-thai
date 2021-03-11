@@ -1,11 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
+import {MessageService} from 'primeng/api';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  providers: [MessageService]
 })
 export class HomeComponent implements OnInit {
   itemEdit: any;
@@ -19,8 +20,9 @@ export class HomeComponent implements OnInit {
   
 
   displayEditPost:any;
-
-  constructor(private router:ActivatedRoute,private http: HttpClient) {
+  myDialog:Boolean=false;
+  
+  constructor(private router:ActivatedRoute,private http: HttpClient,private messageService: MessageService) {
     
    }
 
@@ -58,6 +60,7 @@ export class HomeComponent implements OnInit {
     this.http.post('http://memthainode.comsciproject.com/post/createpost', fd)
               .subscribe(response =>{
                 console.log("post success");
+                this.messageService.add({key: 'bl', severity:'success', summary: 'Success', detail: 'Success',life:3000});
                 location.reload();
               }, error=>{
                 console.log("post fail");
@@ -95,9 +98,14 @@ export class HomeComponent implements OnInit {
     this.http.post('http://memthainode.comsciproject.com/post/delete',json,this.option)
               .subscribe(response =>{
                 console.log("delete success");
+                this.messageService.add({key: 'bl', severity:'success', summary: 'Success', detail: '',life:3000});
                 location.reload();
               }, error=>{
                 console.log("delete fail");
               }); 
   }
+  
+  showBasicDialog() {
+    this.myDialog = true;
+}
 }

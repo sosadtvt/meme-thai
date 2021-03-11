@@ -4,7 +4,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 <body>
+   
     <div class="container">
+        
     <div class="row"> 
 		<div class="col-2 text-center">
             <div class="card"> 
@@ -12,14 +14,31 @@
             </div>
         </div>
 		<div class="col-10 text-center">
-			<div class="card ">
-                <div class="card-body" >
+            
+			 <div class="card-header ">
+                  <!--  <h5>Advanced</h5>
+                    <p-fileUpload name="demo[]" (onBeforeUpload)="selectFile($event)" (onUpload)="upload()"
+                    chooseLabel="เลือกรูป" uploadLabel="อัพรูป"  
+                            accept="image/*" [maxFileSize]="100000000"  >
+                            <ng-template pTemplate="content">
+                                <ul *ngIf="uploadedFiles.length">
+                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
+                                </ul>
+                            </ng-template>
+                    </p-fileUpload>
+                 -->
+                <!-- <div class="card-body" >
                     <!-- <h1>{{iduser}}</h1>
-                    <h1>{{name}}</h1>
-                    <img  src="{{this.img}}" class="img-thumbnail" alt="Cinque Terre" > -->
-					<input type="file" (change)="selectFile($event)">
-					<button type="button" pButton pRipple class="p-button-raised" label="Upload" (click)="upload()" ></button>
-				</div>
+                    <h1>{{name}}</h1>-->
+                    <img  src="{{this.img}}" class="img-thumbnail" alt="Cinque Terre" > 
+                   
+                  
+                    <input style="display: none" type="file" (change)="selectFile($event)" #hiddenfileinput>
+                    <button pButton pRipple (click)="hiddenfileinput.click()"  class="p-button-secondary p-button-text" label="เปลี่ยนรูปโปรไฟล์" ></button>
+                    <button type="button" pButton pRipple class="p-button-secondary p-button-text" label="Upload" (click)="upload()" ></button>
+					<!-- <input   type="file" aria-label="Test" (change)="selectFile($event)">
+					<button type="button" pButton pRipple class="p-button-raised" label="Upload" (click)="upload()" ></button> -->
+				
             </div>
 		</div>
 		<div class="col-sm-2"></div>

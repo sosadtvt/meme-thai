@@ -4,17 +4,36 @@
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 </head>
 <body>
+    <p-toast position="bottom-left"></p-toast>
+    
     <div class="row">
         <div class="col-sm-2"></div>
         <div class="col-sm-6">
             <div class="card">
-                <div class="card-body">
-                    <h1>สร้างโพสต์</h1>
-                    <label for="fname">คำบรรยายภาพ</label>&nbsp;
-                    <input type="text" pInputText id="float-input" [(ngModel)]="caption"><br>
-					<input type="file" (change)="selectFile($event)">
-					<button type="button" (click)="upload()">Post</button>
+                <div class="card-header">
+                    
+                    <p-avatar image="{{img}}" styleClass="p-mr-2" size="large"   shape="circle"></p-avatar>&nbsp;
+                    <button pButton pRipple type="button" style="width: 90%;" label="What's on your mind,{{name}}" class="p-button-rounded p-button-secondary" (click)="showBasicDialog()"></button>
+                    <p-dialog header="สร้างโพสต์" [(visible)]="myDialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
+                        <div class="card">
+                            
+                        <!-- <label for="fname">คำบรรยายภาพ</label>&nbsp; -->
+                    
+                        <textarea rows="5" cols="30"  pInputTextarea   placeholder="What's on your mind,{{name}}"  
+                        [(ngModel)]="caption" ></textarea>
+                        <!-- <input type="text" pInputText id="float-input"  [(ngModel)]="caption"><br> -->
+                        <!-- <input type="file" (change)="selectFile($event)">
+                        <button type="button" (click)="upload()">Post</button> -->
+                        <input style="display: none" type="file" (change)="selectFile($event)" #hiddenfileinput>
+                        <button pButton pRipple (click)="hiddenfileinput.click()"  class="p-button-secondary p-button-text" label="เลือกรูป" ></button>
+                        
+                     </div>
+                    <ng-template pTemplate="footer">
+                        <button type="button"  style="width: 100%;" pButton pRipple class="p-button-rounded p-button-secondary" label="Post" (click)="upload()" ></button>
+                    </ng-template>
+                    </p-dialog>
                 </div>
+                
             </div>
         </div>
     </div>

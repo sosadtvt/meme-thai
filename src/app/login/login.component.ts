@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
   name: any;
  
   checkerrorLogin:any;
-  constructor( @Inject(DOCUMENT) private document: Document,private http: HttpClient,private router: Router,) {
+  constructor( @Inject(DOCUMENT) private document: Document,
+  private http: HttpClient,private router: Router,) {
     this.checkerrorLogin = 0;
   }
   
