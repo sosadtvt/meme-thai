@@ -10,7 +10,7 @@
 			<div class="card">
                 <div class="card-body" >
 					<div class="row">
-						<div class="col-sm-4">	<img  src="{{this.img}}" class="img-thumbnail" alt="Cinque Terre" ></div>
+						<div class="col-sm-4">	<img  src="{{this.img}}" class="img-thumbnail" style="width: 100% \9; height: 180px;" alt="Cinque Terre" ></div>
 						<div class="col-sm-4"><h3>Hi!!&nbsp;{{name}}</h3></div>
 						<div class="col-sm-2" *ngIf="this.iduser!=this.id">
 							<div *ngIf="this.checkF==0">
@@ -41,12 +41,18 @@
 		<div class="col-sm-2"></div>
 		<div class="col-sm-8">
 			<div class="row" *ngIf="(this.checkF==1)||(this.id==this.iduser)">
-				<div class="col-sm-3" *ngFor="let item of responseNew; let i = index"   > 
-					<img    
-							src="{{item.image}}"
-                            class="card-img-top"
+				<div  class="col-sm-3" *ngFor="let item of responseNew; let i = index"   > 
+					
+
+
+					 <img    
+							src="{{item.image}}" 
+							alt="thumbnail" 
+							class="img-thumbnail"
+  							style="width: 100% \9; height: 200px;"
+                           
 							(click)="showBasicDialog2()"
-                        />
+                        /> 
 				</div>
 			</div>
 		</div>
