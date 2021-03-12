@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
                             }, error=>{
                               console.log("fail");
                             }); 
+
   }
 
   selectedfile: any;
