@@ -9,7 +9,10 @@
 nav{
   background:white;
   padding: 5px 40px;
+    
+
 }
+
 nav ul{
   list-style: none;
   display: flex;

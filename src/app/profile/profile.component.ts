@@ -30,22 +30,7 @@ export class ProfileComponent implements OnInit {
     let token = localStorage.getItem('TOKEN');
     this.iduser = localStorage.getItem('TOKENIDUSER'); 
 ////////////////////////////<<Selectข้อมูลตัวเองมาเก็บไว้ในstorage>>////////////////////////////////////////////////////////////////////////////////////// 
-    this.header = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'authorization': 'Bearer ' + token
-    });
-    this.option = {
-      headers: this.header
-    }
-    this.http.get('http://memthainode.comsciproject.com/user/Users/'+this.iduser,this.option)
-                            .subscribe(response =>{
-                              localStorage.setItem('TOKENNAME',response[0].name.toString());
-                              localStorage.setItem('TOKENIMAGE',response[0].image.toString());
-                              //this.name = localStorage.getItem('TOKENNAME'); 
-                              //this.img = response[0].image; 
-                            }, error=>{
-                              console.log("fail");
-                            }); 
+    ///ย้ายไปหน้า login แล้ว
 ////////////////////////////<<Selectขอมูลผู้ใช้ที่เข้ามาหน้าprofile>>/////////////////////////////////////////////////////////////////////////////////////////////////
     this.header = new HttpHeaders({
       'Content-Type': 'application/json',

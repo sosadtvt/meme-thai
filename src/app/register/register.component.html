@@ -1,6 +1,6 @@
 
 
-<div   class="centerScreen p-grid p-flex-column ">
+<div   class="centerScreen p-grid p-flex-column " (contextmenu)="noRightClick($event)" ondrop="return false;">
     <p-card header="สมัครสมาชิก" subheader="สมัครสมาชิกเพื่อเข้าสู่ระบบ" [style]="{width: '360px'}" styleClass="card border-warning mb-3">
         <!-- <div class="p-grid p-fluid ">
             <p-header><h1>Login</h1></p-header>
@@ -11,7 +11,7 @@
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
                         <span class="p-float-label">
-                            <input style="width: 100%;" pInputText id="float-input" type="email" [(ngModel)]="email"> 
+                            <input style="width: 100%;" type="email" pInputText  (keyup)="KeyCode($event)" id=""  [(ngModel)]="email" > 
                             <label for="float-input">อีเมล</label>
                         </span>
                 </div>
@@ -25,7 +25,7 @@
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
                         <span class="p-float-label">
-                            <input style="width: 100%;" pInputText id="float-input" type="text" [(ngModel)]="name"> 
+                            <input style="width: 100%;" pInputText (keyup)="KeyCode($event)" id="" type="text" [(ngModel)]="name"> 
                             <label for="float-input">ชื่อ</label>
                         </span>
                 </div><font color="red" *ngIf="this.check2==1">ชื่อห้ามเป็นช่องว่าง</font>
@@ -37,7 +37,7 @@
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
                         <span class="p-float-label">
-                            <input pPassword style="width: 100%;" id="float-input"  type="password" pInputText [(ngModel)]="password"> 
+                            <input pPassword style="width: 100%;" (keyup)="KeyCode($event)" id=""  type="password" pInputText [(ngModel)]="password"> 
                             <label  for="float-input">รหัสผ่าน</label>
                         </span> 
                 </div> <font color="red" *ngIf="this.check3==1">รหัสห้ามเป็นช่องว่าง</font><br>

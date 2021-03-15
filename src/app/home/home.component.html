@@ -42,7 +42,7 @@
         <div class="col-sm-2"></div>
         <div class="col-sm-6"> <!--โพสต์-->
             <div class="row" >
-                <div class="col-sm-12" *ngFor="let item of responseNew; let i = index">
+                <div class="col-sm-12" *ngFor="let item of responseNew;index as i;first as isFirst">
                     <div class="card ">
                         <div class="card-header" >
                             <img routerLink="/profile/{{item.id}}" class="img-thumbnail" src="{{item.userimage}}" alt="Logo" style="width:40px;" >&nbsp;&nbsp;
@@ -54,8 +54,10 @@
                             alt="..."
                         />
                         <div class="card-body">
-                            <i class="bi bi-heart-fill"></i>&nbsp;&nbsp;
-                            <i class="bi bi-chat-left-dots-fill"></i>&nbsp;&nbsp;
+                        
+                            <i class="bi bi-heart-fill" (click)="like(i,item.idpost)" *ngIf="checklike[i] == 2"></i>
+                            <i class="bi-heart-fill" (click)="like(i,item.idpost)" *ngIf="checklike[i] == 1" style="color: rgb(233, 210, 5); font-size: 27px;"></i>&nbsp;&nbsp;
+                            <i class="bi bi-chat-left-dots-fill" (click)="test(i)"></i>&nbsp;&nbsp;
                         
                                 <i *ngIf="this.item.id==this.iduser" class="bi bi-pen-fill" (click)="EditMyPost(item)"></i>
                             
@@ -63,7 +65,9 @@
                                {{item.caption}}
                             </p>
                         </div>
-                        <div class="card-footer text-muted">....</div>
+                        <div class="card-footer text-muted">
+                            <p>{{checklike[i]}}</p>
+                        </div>
                     </div>
                     <br>
                     

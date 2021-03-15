@@ -18,15 +18,14 @@ export class HomeComponent implements OnInit {
   caption: any;
   responseNew: any;
   
-
   displayEditPost:any;
   myDialog:Boolean=false;
   
+  checklike = new Array();
   constructor(private router:ActivatedRoute,private http: HttpClient,private messageService: MessageService) {
-    
    }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.name = localStorage.getItem('TOKENNAME');
     this.img = localStorage.getItem('TOKENIMAGE');
     this.iduser = localStorage.getItem('TOKENIDUSER');
@@ -39,13 +38,30 @@ export class HomeComponent implements OnInit {
     this.option = {
       headers: this.header
     }
-    this.http.get('http://memthainode.comsciproject.com/post/selectPostversion2/'+this.iduser,this.option)
-                            .subscribe(response =>{
+    await this.http.get('http://memthainode.comsciproject.com/post/selectPostversion2/'+this.iduser,this.option)
+                            .toPromise().then(response =>{
+                             this.checklike = new Array();
+                              for(var i=0;i<Object.keys(response).length;i++){
+                                  console.log(i);
+                                  let json = {IDmy:this.iduser, IDpost:response[i].idpost}
+                                  this.http.post('http://memthainode.comsciproject.com/like/checklike',json)
+                                  .toPromise().then(response1 =>{
+                                    console.log(i);
+                                      if(response1 == 1){ //1 = เคยไลค์แล้ว
+                                        this.checklike.push(1);
+                                      }else{
+                                        this.checklike.push(2);
+                                      }
+                                  }, error=>{
+                                    console.log("เช็คไม่สำเร็จ");
+                                  });
+                              }
                               this.responseNew = response;
-                            }, error=>{
-                              console.log("fail");
                             }); 
 
+  }
+  test(i:any){
+   console.log("test = "+this.checklike[0]);
   }
 
   selectedfile: any;
@@ -105,8 +121,34 @@ export class HomeComponent implements OnInit {
                 console.log("delete fail");
               }); 
   }
+
+  like(index:any,idpost:any){
+
+    if(this.checklike[index]==2){
+      this.checklike[index]=1;
+      let json = {IDmy:this.iduser,IDpost:idpost}
+      this.http.post('http://memthainode.comsciproject.com/like/like',json)
+      .subscribe(response =>{
+      
+      }, error=>{
+        console.log("ไลค์ไม่สำเร็จ");
+      });
+
+    }else{
+      this.checklike[index]=2;
+      let json = {IDmy:this.iduser,IDpost:idpost}
+      this.http.post('http://memthainode.comsciproject.com/like/unlike',json)
+      .subscribe(response =>{
+      
+      }, error=>{
+        console.log("ยกเลิกไลค์ไม่สำเร็จ");
+      });
+    }
+
+    
+  }
   
   showBasicDialog() {
     this.myDialog = true;
-}
+  }
 }
