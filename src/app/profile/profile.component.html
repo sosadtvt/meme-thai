@@ -43,15 +43,13 @@
 			<div class="row" *ngIf="(this.checkF==1)||(this.id==this.iduser)">
 				<div  class="col-sm-3" *ngFor="let item of responseNew; let i = index"   > 
 					
-
-
 					 <img    
 							src="{{item.image}}" 
 							alt="thumbnail" 
 							class="img-thumbnail"
   							style="width: 100% \9; height: 200px;"
                            
-							(click)="showBasicDialog2()"
+							(click)="showBasicDialog2(i)"
                         /> 
 				</div>
 			</div>
@@ -60,7 +58,7 @@
     </div>
 
 
-	<p-dialog header="Long Content" [(visible)]="displayBasic2" [style]="{width: '50vw'}" [baseZIndex]="10000">
+	<p-dialog header="Long Content" [(visible)]="displayBasic2" [style]="{width: '50vw'}"[baseZIndex]="10000">
 		<div class="row" >
 			<div class="col-sm-12">
 				<div class="card ">
@@ -68,12 +66,12 @@
 						<img class="img-thumbnail" src="{{this.img}}" alt="Logo" style="width:40px;">&nbsp;&nbsp;
 						{{name}}
 					</div>
-					<!-- <img
-						src="{{item.image}}"
+					 <img
+						src="{{this.imageshowclick[this.index]}}"
 						class="card-img-top"
 						alt="..."
 					/>
-					<div class="card-body">
+					<!--<div class="card-body">
 						<i class="bi bi-heart-fill"></i>&nbsp;&nbsp;
 						<i class="bi bi-chat-left-dots-fill"></i>
 						<p class="card-text">

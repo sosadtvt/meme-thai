@@ -15,6 +15,7 @@
                     <p-avatar image="{{img}}" styleClass="p-mr-2" size="large"   shape="circle"></p-avatar>&nbsp;
                     <button pButton pRipple type="button" style="width: 90%;" label="What's on your mind,{{name}}" class="p-button-rounded p-button-secondary" (click)="showBasicDialog()"></button>
                     <p-dialog header="สร้างโพสต์" [(visible)]="myDialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
+                        <font color="red" *ngIf="this.checkerrorPost == 1">กรุณาใส่รูปภาพก่อนโพสค์</font>
                         <div class="card">
                             
                         <!-- <label for="fname">คำบรรยายภาพ</label>&nbsp; -->
@@ -57,7 +58,7 @@
                         
                             <i class="bi bi-heart-fill" (click)="like(i,item.idpost)" *ngIf="checklike[i] == 2"></i>
                             <i class="bi-heart-fill" (click)="like(i,item.idpost)" *ngIf="checklike[i] == 1" style="color: rgb(233, 210, 5); font-size: 27px;"></i>&nbsp;&nbsp;
-                            <i class="bi bi-chat-left-dots-fill" (click)="test(i)"></i>&nbsp;&nbsp;
+                            <i class="bi bi-chat-left-dots-fill"></i>&nbsp;&nbsp;
                         
                                 <i *ngIf="this.item.id==this.iduser" class="bi bi-pen-fill" (click)="EditMyPost(item)"></i>
                             
@@ -65,9 +66,9 @@
                                {{item.caption}}
                             </p>
                         </div>
-                        <div class="card-footer text-muted">
+                        <!-- <div class="card-footer text-muted">
                             <p>{{checklike[i]}}</p>
-                        </div>
+                        </div> -->
                     </div>
                     <br>
                     
@@ -97,9 +98,14 @@
             <input type="text" pInputText id="float-input" [(ngModel)]="caption">
             <!-- <h1>{{this.itemEdit.caption}}</h1> -->
             <p-button icon="pi pi-check" (click)="Editcaption()" label="Ok" styleClass="p-button-text" ></p-button>
-            <p (click)="DeletePost()">ลบโพสต์</p>
+            <p (click)="showdeletepost()">ลบโพสต์</p>
         </ng-template>
-        
     </p-dialog>
 
+    <p-dialog header="คุณต้องการลบโพสต์ใช่หรือไม่" [(visible)]="displayDeletePost" [style]="{width: '50vw'}" [baseZIndex]="10000">
+        <ng-template pTemplate>
+            <p-button icon="pi pi-check" (click)="DeletePost()" label="ใช่" styleClass="p-button-text" ></p-button>
+            <p-button icon="pi pi-times" (click)="this.displayDeletePost = false" label="ยกเลิก" styleClass="p-button-text" ></p-button>
+        </ng-template>
+    </p-dialog>
 </body>

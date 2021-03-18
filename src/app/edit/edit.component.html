@@ -36,6 +36,7 @@
                     <input style="display: none" type="file" (change)="selectFile($event)" #hiddenfileinput>
                     <button pButton pRipple (click)="hiddenfileinput.click()"  class="p-button-secondary p-button-text" label="เปลี่ยนรูปโปรไฟล์" ></button>
                     <button type="button" pButton pRipple class="p-button-secondary p-button-text" label="Upload" (click)="upload()" ></button>
+                    <font color="red" *ngIf="this.checkerrorUploadimage==1">กรุณาเลือกรูปภาพก่อน</font>
 					<!-- <input   type="file" aria-label="Test" (change)="selectFile($event)">
 					<button type="button" pButton pRipple class="p-button-raised" label="Upload" (click)="upload()" ></button> -->
 				

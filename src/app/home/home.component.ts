@@ -22,7 +22,11 @@ export class HomeComponent implements OnInit {
   myDialog:Boolean=false;
   
   checklike = new Array();
+  checkerrorPost:any;//เช็คerror โพสต์ตอนไใ่ใส่รูปภาพ
+
+  displayDeletePost:any;//เช็คการกดลบโพสต์
   constructor(private router:ActivatedRoute,private http: HttpClient,private messageService: MessageService) {
+   
    }
 
   async ngOnInit() {
@@ -40,13 +44,11 @@ export class HomeComponent implements OnInit {
     }
     await this.http.get('http://memthainode.comsciproject.com/post/selectPostversion2/'+this.iduser,this.option)
                             .toPromise().then(response =>{
-                             this.checklike = new Array();
+                          
                               for(var i=0;i<Object.keys(response).length;i++){
-                                  console.log(i);
                                   let json = {IDmy:this.iduser, IDpost:response[i].idpost}
                                   this.http.post('http://memthainode.comsciproject.com/like/checklike',json)
                                   .toPromise().then(response1 =>{
-                                    console.log(i);
                                       if(response1 == 1){ //1 = เคยไลค์แล้ว
                                         this.checklike.push(1);
                                       }else{
@@ -59,9 +61,6 @@ export class HomeComponent implements OnInit {
                               this.responseNew = response;
                             }); 
 
-  }
-  test(i:any){
-   console.log("test = "+this.checklike[0]);
   }
 
   selectedfile: any;
@@ -76,10 +75,12 @@ export class HomeComponent implements OnInit {
     fd.append('avatar',this.selectedfile);
     this.http.post('http://memthainode.comsciproject.com/post/createpost', fd)
               .subscribe(response =>{
+                this.checkerrorPost = 0;
                 console.log("post success");
                 this.messageService.add({key: 'bl', severity:'success', summary: 'Success', detail: 'Success',life:3000});
                 location.reload();
               }, error=>{
+                this.checkerrorPost = 1;
                 console.log("post fail");
               }); 
   }
@@ -103,25 +104,31 @@ export class HomeComponent implements OnInit {
   }
 
   DeletePost(){
-    let json = {idpost : this.itemEdit.idpost};
-    let token2 = localStorage.getItem('TOKEN');
-    this.header = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'authorization': 'Bearer ' + token2
-    });
-    this.option = {
-      headers: this.header
-    }
-    this.http.post('http://memthainode.comsciproject.com/post/delete',json,this.option)
-              .subscribe(response =>{
-                console.log("delete success");
-                this.messageService.add({key: 'bl', severity:'success', summary: 'Success', detail: '',life:3000});
-                location.reload();
-              }, error=>{
-                console.log("delete fail");
-              }); 
+    
+      let json = {idpost : this.itemEdit.idpost};
+      let token2 = localStorage.getItem('TOKEN');
+      this.header = new HttpHeaders({
+        'Content-Type': 'application/json',
+        'authorization': 'Bearer ' + token2
+      });
+      this.option = {
+        headers: this.header
+      }
+      this.http.post('http://memthainode.comsciproject.com/post/delete',json,this.option)
+                .subscribe(response =>{
+                  console.log("delete success");
+                  this.messageService.add({key: 'bl', severity:'success', summary: 'Success', detail: '',life:3000});
+                  location.reload();
+                }, error=>{
+                  console.log("delete fail");
+                }); 
+  
   }
-
+  
+  showdeletepost(){
+    this.displayDeletePost = true;
+  }
+  
   like(index:any,idpost:any){
 
     if(this.checklike[index]==2){

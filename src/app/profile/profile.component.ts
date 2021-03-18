@@ -21,7 +21,8 @@ export class ProfileComponent implements OnInit {
   displayBasic2: any;
 
   checkF:any;
-
+  imageshowclick = new Array(); //รูปภาพตอนกดดูรูปภาพ
+  index:any;
   constructor(private router:ActivatedRoute,private http: HttpClient) {
     this.id = router.snapshot.params['id'];
    }
@@ -57,6 +58,9 @@ export class ProfileComponent implements OnInit {
     this.http.get('http://memthainode.comsciproject.com/post/selectPostId/'+this.id,this.option)
                             .subscribe(response =>{
                               this.responseNew = response;
+                              for(var i=0;i<Object.keys(response).length;i++){
+                                this.imageshowclick[i] = response[i].image;
+                              }
                             }, error=>{
                               console.log("fail");
                             });
@@ -94,7 +98,8 @@ export class ProfileComponent implements OnInit {
     });
   }
 
-  showBasicDialog2(){
+  showBasicDialog2(index:any){
+    this.index = index;
     this.displayBasic2 = true;
   }
 }

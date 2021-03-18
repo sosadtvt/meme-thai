@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {MessageService} from 'primeng/api';
+
 @Component({
   selector: 'app-edit',
   templateUrl: './edit.component.html',
@@ -19,18 +20,17 @@ export class EditComponent implements OnInit {
   ponse:any;
   uploadedFiles: any[] = [];
   displayBasic2: any;
-  constructor(private messageService: MessageService,private router:ActivatedRoute,
-    private http: HttpClient,private routers: Router
-    
-    ) {
-    
+
+  checkerrorUploadimage:any;
+  constructor(private messageService: MessageService,private router:ActivatedRoute,private http: HttpClient,private routers: Router) {
+    this.checkerrorUploadimage = 0;
    }
 
   ngOnInit(): void {
     this.name = localStorage.getItem('TOKENNAME');
     this.img = localStorage.getItem('TOKENIMAGE');
     this.iduser = localStorage.getItem('TOKENIDUSER');
-    console.log("id = "+this.iduser);
+    
   }
   
   selectedfile: any;
@@ -46,9 +46,26 @@ export class EditComponent implements OnInit {
     fd.append('id',this.iduser);
     this.http.post('http://memthainode.comsciproject.com/upload/profile', fd)
               .subscribe(response =>{
+                this.checkerrorUploadimage = 0;
                 console.log("Upload success");
-                this.routers.navigateByUrl('/profile/'+this.iduser);
+           
+                    let token =  localStorage.getItem('TOKEN');
+                    this.header = new HttpHeaders({
+                      'Content-Type': 'application/json',
+                      'authorization': 'Bearer ' + token
+                    });
+                    this.option = {
+                      headers: this.header
+                    }
+                    this.http.get('http://memthainode.comsciproject.com/user/Users/'+this.iduser,this.option)
+                                .subscribe(response =>{
+                                  localStorage.setItem('TOKENNAME',response[0].name.toString());
+                                  localStorage.setItem('TOKENIMAGE',response[0].image.toString());
+                                }, error=>{
+                                  console.log("fail");
+                                }); 
               }, error=>{
+                this.checkerrorUploadimage = 1;
                 console.log("Upload fail");
               }); 
   }
@@ -60,7 +77,6 @@ export class EditComponent implements OnInit {
      this.uploadedFiles.push(file);
       // this.selectedfile = file;
   }
-    
     this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
 }
 
