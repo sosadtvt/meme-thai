@@ -10,8 +10,10 @@
 			<div class="card">
                 <div class="card-body" >
 					<div class="row">
-						<div class="col-sm-4">	<img  src="{{this.img}}" class="img-thumbnail" style="width: 100% \9; height: 180px;" alt="Cinque Terre" ></div>
-						<div class="col-sm-4"><h3>Hi!!&nbsp;{{name}}</h3></div>
+						<div class="col-sm-2">	<img  src="{{this.img}}" class="img-thumbnail" style="width: 100% \9; height: 100px;" alt="Cinque Terre" ></div>
+						<div class="col-sm-2"><h3>{{name}}</h3></div>
+						<div class="col-sm-3"><h6>กำลังติดตาม  {{checkCoutnmyfollow}}  คน</h6></div>
+						<div class="col-sm-3"><h6>ผู้ติดตาม  {{countfollowing}}  คน</h6></div>
 						<div class="col-sm-2" *ngIf="this.iduser!=this.id">
 							<div *ngIf="this.checkF==0">
 								<button pButton pRipple type="button" label="ติดตาม" class="p-button-raised p-button-warning" (click)="follow()"></button>
@@ -27,7 +29,6 @@
 							<button type="button" pButton pRipple class="p-button-raised p-button-warning" label="Edit" routerLink="/edit"></button>
 							</div>
 						</div>
-						
 					</div>
 				</div>
             </div>

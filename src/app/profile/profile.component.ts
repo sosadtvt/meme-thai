@@ -21,17 +21,17 @@ export class ProfileComponent implements OnInit {
   displayBasic2: any;
 
   checkF:any;
-  imageshowclick = new Array(); //รูปภาพตอนกดดูรูปภาพ
+  checkCoutnmyfollow:any;
+  countfollowing:any;
+  imageshowclick = new Array();
   index:any;
   constructor(private router:ActivatedRoute,private http: HttpClient) {
-    this.id = router.snapshot.params['id'];
+    this.id = router.snapshot.params['id']; //ส่ง id มาหน้า profile
    }
 
   ngOnInit(): void {
     let token = localStorage.getItem('TOKEN');
     this.iduser = localStorage.getItem('TOKENIDUSER'); 
-////////////////////////////<<Selectข้อมูลตัวเองมาเก็บไว้ในstorage>>////////////////////////////////////////////////////////////////////////////////////// 
-    ///ย้ายไปหน้า login แล้ว
 ////////////////////////////<<Selectขอมูลผู้ใช้ที่เข้ามาหน้าprofile>>/////////////////////////////////////////////////////////////////////////////////////////////////
     this.header = new HttpHeaders({
       'Content-Type': 'application/json',
@@ -68,15 +68,28 @@ export class ProfileComponent implements OnInit {
     let json = {IDmy:this.iduser,IDfollowing:this.id}
     this.http.post('http://memthainode.comsciproject.com/follow/checkfollow',json)
     .subscribe(response =>{
-      console.log("Check = "+response);
-      console.log("IDmy = "+this.iduser);
-      console.log("IDfollowing = "+this.id);
       this.checkF = response;
     }, error=>{
       console.log("CheckFollow Error");
     });
+////////////////////////////<<เช็คจำนวนคนที่เราติดตาม>>//////////////////////////////////////////////////////////////////////////////////////
+    let json2 = {IDmy:this.id}
+    this.http.post('http://memthainode.comsciproject.com/follow/countmyfollow',json2)
+    .subscribe(response =>{
+      this.checkCoutnmyfollow = response;
+    }, error=>{
+      console.log("countmyfollow Error");
+    });
+////////////////////////////<<เช็คคนที่มาติดตามเรา>>//////////////////////////////////////////////////////////////////////////////////////
+    let json3 = {IDmy:this.id}
+    this.http.post('http://memthainode.comsciproject.com/follow/countfollowing',json3)
+    .subscribe(response =>{
+      this.countfollowing = response;
+    }, error=>{
+      console.log("countfollowing Error");
+    });
 }
-
+////////////////////////////<<กดติดตาม>>//////////////////////////////////////////////////////////////////////////////////////
   follow(){
     let json = {IDmy:this.iduser,IDfollowing:this.id}
     this.http.post('http://memthainode.comsciproject.com/follow/follow',json)
@@ -87,6 +100,7 @@ export class ProfileComponent implements OnInit {
       console.log("ติดตามไม่สำเร็จ");
     });
   }
+////////////////////////////<<กดยกเลิกติดตาม>>//////////////////////////////////////////////////////////////////////////////////////
   unfollow(){
     let json = {IDmy:this.iduser,IDfollowing:this.id}
     this.http.post('http://memthainode.comsciproject.com/follow/unfollow',json)
@@ -97,7 +111,7 @@ export class ProfileComponent implements OnInit {
       console.log("ยกเลิกติดตามไม่สำเร็จ");
     });
   }
-
+////////////////////////////<<โชว์ Dialog กดดูรูปภาพ>>//////////////////////////////////////////////////////////////////////////////////////
   showBasicDialog2(index:any){
     this.index = index;
     this.displayBasic2 = true;

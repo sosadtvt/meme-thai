@@ -54,6 +54,7 @@ export class HomeComponent implements OnInit {
                                       }else{
                                         this.checklike.push(2);
                                       }
+                                    
                                   }, error=>{
                                     console.log("เช็คไม่สำเร็จ");
                                   });
