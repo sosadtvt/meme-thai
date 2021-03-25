@@ -30,24 +30,19 @@ export class LoginComponent implements OnInit {
   }
   
   ngOnInit() {
-    // this.document.body.classList.add('bodybg-color');
-    // let response = await this.login();
-    // console.log(response);
+
   }
   ngOnDestroy() {
-    // remove the class form body tag
-   // this.document.body.classList.add('bodybg-color');
+  
   }
   login(){
-    
     let json = {email : this.email,password : this.password};
-    this.http.post('http://memthainode.comsciproject.com/login/loginUser', json)
+    this.http.post('http://memthainode.comsciproject.com/login/loginUser', json) //login
               .subscribe(response =>{
-                console.log("Login success");
                 this.checkerrorLogin = 0;
                 this.decoded = jwt_decode(response.toString());
-                localStorage.setItem('TOKENIDUSER',this.decoded.id);
-                localStorage.setItem('TOKEN',response.toString());
+                localStorage.setItem('TOKENIDUSER',this.decoded.id); //loginเสร็จ ทำการเก็บid userที่loginไว้
+                localStorage.setItem('TOKEN',response.toString()); //loginเสร็จ ทำการเก็บTOKEN userที่loginไว้
 
                     let token =  localStorage.getItem('TOKEN');
                     this.iduser = localStorage.getItem('TOKENIDUSER');
@@ -59,13 +54,11 @@ export class LoginComponent implements OnInit {
                     this.option = {
                       headers: this.header
                     }
-                    this.http.get('http://memthainode.comsciproject.com/user/Users/'+this.iduser,this.option)
+                    this.http.get('http://memthainode.comsciproject.com/user/Users/'+this.iduser,this.option) //loginเสร็จ ทำการดึงข้อมูลผู้ใช้มาแสดง
                                             .subscribe(response =>{
                                               localStorage.setItem('TOKENNAME',response[0].name.toString());
                                               localStorage.setItem('TOKENIMAGE',response[0].image.toString());
-
                                               this.router.navigateByUrl('/home');
-                                               // this.router.navigateByUrl('/profile/'+this.decoded.id);
                                             }, error=>{
                                               console.log("fail");
                                             }); 

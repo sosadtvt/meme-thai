@@ -17,14 +17,24 @@ export class ProfileComponent implements OnInit {
   responseNew: any;
   iduser: any;
   ponse:any;
-
+  caption:any;
+  indexidpost:any;
   displayBasic2: any;
 
   checkF:any;
   checkCoutnmyfollow:any;
   countfollowing:any;
   imageshowclick = new Array();
+  captionshowclick = new Array();
+  idpostshowclick = new Array();
   index:any;
+
+  displayEditPost:any;
+  displayDeletePost:any;
+
+  displayPosition: any;
+  displayPosition2: any;
+  position: any;
   constructor(private router:ActivatedRoute,private http: HttpClient) {
     this.id = router.snapshot.params['id']; //ส่ง id มาหน้า profile
    }
@@ -47,7 +57,7 @@ export class ProfileComponent implements OnInit {
                             }, error=>{
                               console.log("fail");
                             });                            
-////////////////////////////<<Selectโพสต์>>//////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////<<Selectโพสต์ของผู้ใช้คนนั้น>>//////////////////////////////////////////////////////////////////////////////////////
     this.header = new HttpHeaders({
       'Content-Type': 'application/json',
       'authorization': 'Bearer ' + token
@@ -60,6 +70,9 @@ export class ProfileComponent implements OnInit {
                               this.responseNew = response;
                               for(var i=0;i<Object.keys(response).length;i++){
                                 this.imageshowclick[i] = response[i].image;
+                                this.captionshowclick[i] = response[i].caption;
+                                this.idpostshowclick[i] = response[i].idpost;
+                                //console.log("caption = "+this.captionshowclick[i]);
                               }
                             }, error=>{
                               console.log("fail");
@@ -111,9 +124,57 @@ export class ProfileComponent implements OnInit {
       console.log("ยกเลิกติดตามไม่สำเร็จ");
     });
   }
+////////////////////////////<<แก้ไขโพสต์ตัวเองหน้าโปรไฟล>>//////////////////////////////////////////////////////////////////////////////////////
+  EditMyPost(caption:any,index:any){
+    this.indexidpost = index;
+    this.displayEditPost = true;
+    this.caption = caption;
+  }
+  Editcaption(){
+    this.displayEditPost = false;
+    let json = {id : this.idpostshowclick[this.indexidpost],caption :this.caption};
+    this.http.post('http://memthainode.comsciproject.com/post/editcaption',json)
+              .subscribe(response =>{
+                this.position = "bottom-left";
+                this.displayPosition = true;
+                console.log("editcaption success");
+              }, error=>{
+                console.log("editcaption fail");
+              }); 
+  }
 ////////////////////////////<<โชว์ Dialog กดดูรูปภาพ>>//////////////////////////////////////////////////////////////////////////////////////
   showBasicDialog2(index:any){
     this.index = index;
     this.displayBasic2 = true;
   }
+////////////////////////////<<ลบรูปโพสต์หน้าโปรไฟล>>//////////////////////////////////////////////////////////////////////////////////////
+  DeletePost(){
+    let json = {IDpost : this.idpostshowclick[this.indexidpost],IDmy:this.iduser};
+    let token2 = localStorage.getItem('TOKEN');
+    this.header = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'authorization': 'Bearer ' + token2
+    });
+    this.option = {
+      headers: this.header
+    }
+    this.http.post('http://memthainode.comsciproject.com/post/delete',json,this.option)
+              .subscribe(response =>{
+                this.displayDeletePost = false;
+                this.displayBasic2 = false;
+                this.displayEditPost = false;
+                
+                this.position = "bottom-left";
+                this.displayPosition = true;
+
+                console.log("delete success");
+              }, error=>{
+                console.log("delete Fail");
+              }); 
+  }
+  showdeletepost(){
+    this.displayDeletePost = true;
+  }
+////////////////////////////<<>>//////////////////////////////////////////////////////////////////////////////////////
+
 }

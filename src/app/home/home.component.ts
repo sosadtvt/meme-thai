@@ -22,9 +22,12 @@ export class HomeComponent implements OnInit {
   myDialog:Boolean=false;
   
   checklike = new Array();
-  checkerrorPost:any;//เช็คerror โพสต์ตอนไใ่ใส่รูปภาพ
+  checkerrorPost:any;
 
-  displayDeletePost:any;//เช็คการกดลบโพสต์
+  displayDeletePost:any;
+  displayPosition: any;
+  displayPosition2: any;
+  position: any;
   constructor(private router:ActivatedRoute,private http: HttpClient,private messageService: MessageService) {
    
    }
@@ -34,7 +37,7 @@ export class HomeComponent implements OnInit {
     this.img = localStorage.getItem('TOKENIMAGE');
     this.iduser = localStorage.getItem('TOKENIDUSER');
     let token = localStorage.getItem('TOKEN');
-
+////////////////////////////<<ดึงโพสต์มาแสดงหน้าฟีด>>//////////////////////////////////////////////////////////////////////////////////////
     this.header = new HttpHeaders({
       'Content-Type': 'application/json',
       'authorization': 'Bearer ' + token
@@ -47,7 +50,7 @@ export class HomeComponent implements OnInit {
                           
                               for(var i=0;i<Object.keys(response).length;i++){
                                   let json = {IDmy:this.iduser, IDpost:response[i].idpost}
-                                  this.http.post('http://memthainode.comsciproject.com/like/checklike',json)
+                                  this.http.post('http://memthainode.comsciproject.com/like/checklike',json)//ดึงแต่ละโพสต์มาเช็คดูว่าเรากดไลค์หรือยัง
                                   .toPromise().then(response1 =>{
                                       if(response1 == 1){ //1 = เคยไลค์แล้ว
                                         this.checklike.push(1);
@@ -63,12 +66,11 @@ export class HomeComponent implements OnInit {
                             }); 
 
   }
-
+////////////////////////////<<เลือกไฟล์ภาพและโพสต์รูปภาพ>>//////////////////////////////////////////////////////////////////////////////////////
   selectedfile: any;
   selectFile(event: any){
    this.selectedfile = event.target.files[0];
   }
-
   upload(){
     const fd = new FormData();
     fd.append('IDuser_post',this.iduser);
@@ -85,28 +87,27 @@ export class HomeComponent implements OnInit {
                 console.log("post fail");
               }); 
   }
-
+////////////////////////////<<แก้ไขโพสต์ตัวเอง>>//////////////////////////////////////////////////////////////////////////////////////
   EditMyPost(item: any){
     this.itemEdit = item;
     this.caption = item.caption;
     this.displayEditPost = true;
   }
-
   Editcaption(){
     this.displayEditPost = false;
     let json = {id : this.itemEdit.idpost,caption :this.caption};
     this.http.post('http://memthainode.comsciproject.com/post/editcaption',json)
               .subscribe(response =>{
                 console.log("editcaption success");
-                location.reload();
+                this.position = "bottom-left";
+                this.displayPosition2 = true;
               }, error=>{
                 console.log("editcaption fail");
               }); 
   }
-
+////////////////////////////<<ลบโพสต์ตัวเอง>>//////////////////////////////////////////////////////////////////////////////////////
   DeletePost(){
-    
-      let json = {idpost : this.itemEdit.idpost};
+      let json = {IDpost : this.itemEdit.idpost,IDmy:this.iduser};
       let token2 = localStorage.getItem('TOKEN');
       this.header = new HttpHeaders({
         'Content-Type': 'application/json',
@@ -119,20 +120,21 @@ export class HomeComponent implements OnInit {
                 .subscribe(response =>{
                   console.log("delete success");
                   this.messageService.add({key: 'bl', severity:'success', summary: 'Success', detail: '',life:3000});
-                  location.reload();
+                  this.displayDeletePost = false;
+                  this.displayEditPost = false;
+                  this.position = "bottom-left";
+                  this.displayPosition = true;
                 }, error=>{
                   console.log("delete fail");
                 }); 
   
   }
-  
   showdeletepost(){
     this.displayDeletePost = true;
   }
-  
+  ////////////////////////////<<กดไลค์>>//////////////////////////////////////////////////////////////////////////////////////
   like(index:any,idpost:any){
-
-    if(this.checklike[index]==2){
+    if(this.checklike[index]==2){//กดไลค์
       this.checklike[index]=1;
       let json = {IDmy:this.iduser,IDpost:idpost}
       this.http.post('http://memthainode.comsciproject.com/like/like',json)
@@ -142,7 +144,7 @@ export class HomeComponent implements OnInit {
         console.log("ไลค์ไม่สำเร็จ");
       });
 
-    }else{
+    }else{//ยกเลิกไลค์
       this.checklike[index]=2;
       let json = {IDmy:this.iduser,IDpost:idpost}
       this.http.post('http://memthainode.comsciproject.com/like/unlike',json)
@@ -155,7 +157,6 @@ export class HomeComponent implements OnInit {
 
     
   }
-  
   showBasicDialog() {
     this.myDialog = true;
   }

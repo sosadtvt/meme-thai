@@ -93,7 +93,6 @@
     <p-dialog header="แก้ไขโพสต์" [(visible)]="displayEditPost" [style]="{width: '50vw'}" [baseZIndex]="10000">
         <ng-template pTemplate>
             <input type="text" pInputText id="float-input" [(ngModel)]="caption">
-            <!-- <h1>{{this.itemEdit.caption}}</h1> -->
             <p-button icon="pi pi-check" (click)="Editcaption()" label="Ok" styleClass="p-button-text" ></p-button>
             <p (click)="showdeletepost()">ลบโพสต์</p>
         </ng-template>
@@ -105,4 +104,12 @@
             <p-button icon="pi pi-times" (click)="this.displayDeletePost = false" label="ยกเลิก" styleClass="p-button-text" ></p-button>
         </ng-template>
     </p-dialog>
+
+    <p-dialog header="แจ้งเตือน" [(visible)]="displayPosition" [position]="position" [modal]="true" [style]="{width: '25vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    	<p>ลบสำเร็จแล้ว</p>
+	</p-dialog>
+
+	<p-dialog header="แจ้งเตือน" [(visible)]="displayPosition2" [position]="position" [modal]="true" [style]="{width: '25vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    	<p>แก้ไขสำเร็จ</p>
+	</p-dialog>
 </body>

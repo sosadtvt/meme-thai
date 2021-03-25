@@ -59,7 +59,7 @@
     </div>
 
 
-	<p-dialog header="Long Content" [(visible)]="displayBasic2" [style]="{width: '50vw'}"[baseZIndex]="10000">
+	<p-dialog header="โพสต์" [(visible)]="displayBasic2" [style]="{width: '50vw'}"[baseZIndex]="10000">
 		<div class="row" >
 			<div class="col-sm-12">
 				<div class="card ">
@@ -70,16 +70,13 @@
 					 <img
 						src="{{this.imageshowclick[this.index]}}"
 						class="card-img-top"
-						alt="..."
 					/>
-					<!--<div class="card-body">
-						<i class="bi bi-heart-fill"></i>&nbsp;&nbsp;
-						<i class="bi bi-chat-left-dots-fill"></i>
+					<div class="card-body">
+						<i class="bi bi-pen-fill" *ngIf="this.id==this.iduser" style="font-size: 27px;" (click)="EditMyPost(this.captionshowclick[this.index],this.index)"></i>&nbsp;&nbsp;
 						<p class="card-text">
-						   {{item.caption}}
-						</p>
-					</div> -->
-					<div class="card-footer text-muted">....</div>
+							{{this.captionshowclick[this.index]}}
+						 </p>
+					</div>
 				</div>
 				<br>
 			</div>
@@ -89,6 +86,30 @@
 			<p-button icon="pi pi-check" (click)="displayBasic2=false" label="Ok" styleClass="p-button-text"></p-button>
 		</ng-template>
 	</p-dialog>
-
  </div>
+
+	<p-dialog header="แก้ไขโพสต์" [(visible)]="displayEditPost"  [style]="{width: '50vw'}" [baseZIndex]="10000">
+		<ng-template pTemplate>
+			<input type="text" pInputText id="float-input" [(ngModel)]="caption">
+			<p-button icon="pi pi-check" (click)="Editcaption()" label="Ok" styleClass="p-button-text" ></p-button>
+			<p (click)="showdeletepost()">ลบโพสต์</p>
+		</ng-template>
+	</p-dialog>
+
+	<p-dialog header="คุณต้องการลบโพสต์ใช่หรือไม่" [(visible)]="displayDeletePost" [style]="{width: '50vw'}" [baseZIndex]="10000">
+		<ng-template pTemplate>
+			<p-button icon="pi pi-check" (click)="DeletePost()" label="ใช่" styleClass="p-button-text" ></p-button>
+			<p-button icon="pi pi-times" (click)="this.displayDeletePost = false" label="ยกเลิก" styleClass="p-button-text" ></p-button>
+		</ng-template>
+	</p-dialog>
+
+	<p-dialog header="แจ้งเตือน" [(visible)]="displayPosition" [position]="position" [modal]="true" [style]="{width: '25vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    	<p>ลบสำเร็จแล้ว</p>
+	</p-dialog>
+
+	<p-dialog header="แจ้งเตือน" [(visible)]="displayPosition2" [position]="position" [modal]="true" [style]="{width: '25vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    	<p>แก้ไขสำเร็จ</p>
+	</p-dialog>
+
+	
 </body>
