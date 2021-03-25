@@ -13,7 +13,7 @@
                 <div class="card-header">
                     
                     <p-avatar image="{{img}}" styleClass="p-mr-2" size="large"   shape="circle"></p-avatar>&nbsp;
-                    <button pButton pRipple type="button" style="width: 90%;" label="What's on your mind,{{name}}" class="p-button-rounded p-button-secondary" (click)="showBasicDialog()"></button>
+                    <button pButton pRipple type="button" style="width: 90%;" label="โพสต์อะไรซักอย่างสิ {{name}}" class="p-button-rounded p-button-secondary" (click)="showBasicDialog()"></button>
                     <p-dialog header="สร้างโพสต์" [(visible)]="myDialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
                         <font color="red" *ngIf="this.checkerrorPost == 1">กรุณาใส่รูปภาพก่อนโพสค์</font>
                         <div class="card">
@@ -111,5 +111,9 @@
 
 	<p-dialog header="แจ้งเตือน" [(visible)]="displayPosition2" [position]="position" [modal]="true" [style]="{width: '25vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
     	<p>แก้ไขสำเร็จ</p>
+	</p-dialog>
+
+    <p-dialog header="แจ้งเตือน" [(visible)]="displayPosition3" [position]="position" [modal]="true" [style]="{width: '25vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    	<p>โพสต์สำเร็จแล้ว</p>
 	</p-dialog>
 </body>

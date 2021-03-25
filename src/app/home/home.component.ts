@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   displayDeletePost:any;
   displayPosition: any;
   displayPosition2: any;
+  displayPosition3: any;
   position: any;
   constructor(private router:ActivatedRoute,private http: HttpClient,private messageService: MessageService) {
    
@@ -79,9 +80,10 @@ export class HomeComponent implements OnInit {
     this.http.post('http://memthainode.comsciproject.com/post/createpost', fd)
               .subscribe(response =>{
                 this.checkerrorPost = 0;
-                console.log("post success");
+                this.myDialog = false;
+                this.displayPosition3 = true;
                 this.messageService.add({key: 'bl', severity:'success', summary: 'Success', detail: 'Success',life:3000});
-                location.reload();
+                //location.reload();
               }, error=>{
                 this.checkerrorPost = 1;
                 console.log("post fail");

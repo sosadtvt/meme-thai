@@ -49,4 +49,10 @@
             <button pButton pRipple type="button" label="สมัคร" class="p-button-rounded p-button-warning" style="width: 100%;" (click)="register()"></button>
         </div>
     </p-card>
+
+    
+    <p-dialog header="สมัครสมาชิกสำเร็จ" [(visible)]="displayBasic" [style]="{width: '30vw'}" [baseZIndex]="10000">
+        <p>ระบบจะทำการกลับไปหน้าเริ่มต้น เพื่อทำการLoginเข้าสู่ระบบ</p>
+    </p-dialog>
+
 </div>

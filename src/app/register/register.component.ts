@@ -23,10 +23,14 @@ export class RegisterComponent implements OnInit {
   check1 = 0;
   check2 = 0;
   check3 = 0;
+
+  displayBasic:any;
+  value = 0;
   constructor(private http: HttpClient,private router: Router) {
     this.siteKey = "6LfiHTAaAAAAACPFlQ06s0dQ6H1NRp9qeKtNbGAx";
     this.checkerrorRegister=0;
     this.checkerrorcaptcha=0;
+    
    }
 
   ngOnInit(): void {
@@ -50,7 +54,19 @@ export class RegisterComponent implements OnInit {
           this.http.post('http://memthainode.comsciproject.com/login/register', json)
                     .subscribe(response =>{
                       console.log("Register success");
-                      this.router.navigateByUrl('/login');
+                      this.displayBasic = true;
+                      
+                        let inter = setInterval(()=>{
+                          this.value+=6;
+                            if(this.value>=100){
+                              clearInterval(inter);
+                              setTimeout(()=>{
+                                this.router.navigateByUrl('/login');
+                              
+                              },1000);
+                            }
+                        },100); 
+              
                     }, error=>{
                       this.checkerrorRegister=1;
                       console.log("Register fail");
@@ -97,6 +113,8 @@ export class RegisterComponent implements OnInit {
     ondrop(event:any){
       console.log(event);
     }
-  
+    delay(ms: number) {
+      return new Promise( resolve => setTimeout(resolve, ms) );
+  }
 
 }
