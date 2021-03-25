@@ -22,6 +22,13 @@ export class EditComponent implements OnInit {
   displayBasic2: any;
 
   checkerrorUploadimage:any;
+
+  value1:any;
+  value2:any;
+  value3:any;
+
+  displayPosition:any;
+  position:any;
   constructor(private messageService: MessageService,private router:ActivatedRoute,private http: HttpClient,private routers: Router) {
     this.checkerrorUploadimage = 0;
    }
@@ -30,7 +37,38 @@ export class EditComponent implements OnInit {
     this.name = localStorage.getItem('TOKENNAME');
     this.img = localStorage.getItem('TOKENIMAGE');
     this.iduser = localStorage.getItem('TOKENIDUSER');
+    let token =  localStorage.getItem('TOKEN');
+////////////////////////////<<Selectข้อมูลเรา>>//////////////////////////////////////////////////////////////////////////////////////
+  this.header = new HttpHeaders({
+    'Content-Type': 'application/json',
+    'authorization': 'Bearer ' + token
+  });
+  this.option = {
+    headers: this.header
+  }
+  this.http.get('http://memthainode.comsciproject.com/user/users/'+this.iduser,this.option)
+                          .subscribe(response =>{
+                            this.value1 = response[0].email;
+                            this.value2 = response[0].name;
+                            this.value3 = response[0].caption;
+                          }, error=>{
+                            console.log("selectข้อมูลเรา ไม่ได้");
+                          });
+  }
+
+  edituser(){
     
+      let json = {id:this.iduser,name:this.value2,caption:this.value3}
+      this.http.post('http://memthainode.comsciproject.com/user/edituser',json)
+      .subscribe(response =>{
+        console.log("Update Success");
+        localStorage.removeItem('TOKENNAME');
+        localStorage.setItem('TOKENNAME',this.value2.toString());
+        this.position = "bottom-left";
+        this.displayPosition = true;
+      }, error=>{
+        console.log("Update Failed");
+      });
   }
   
   selectedfile: any;
@@ -71,13 +109,14 @@ export class EditComponent implements OnInit {
   }
   myUploader(event:any) {
     this.selectedfile = event.target.files[0];
-}
-  onUpload(event:any) {
-    for(let file of event.files) {
-     this.uploadedFiles.push(file);
-      // this.selectedfile = file;
   }
-    this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
-}
+  onUpload(event:any) {
+      for(let file of event.files) {
+        this.uploadedFiles.push(file);
+          // this.selectedfile = file;
+      }
+      this.messageService.add({severity: 'info', summary: 'File Uploaded', detail: ''});
+  }
 
+  
 }

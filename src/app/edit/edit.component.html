@@ -1,54 +1,61 @@
 <app-header></app-header> <br>
 
-้<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+้
+
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
+
 <body>
-   
     <div class="container">
-        
-    <div class="row"> 
-		<div class="col-2 text-center">
-            <div class="card"> 
-                    <p-button label="แก้ไขโปรไฟล์" styleClass="p-button-link" ></p-button>
+        <div class="row">
+
+            <div class="col-2 text-center">
+                <div class="card">
+                    <p-button label="แก้ไขโปรไฟล์" styleClass="p-button-link"></p-button>
+                </div>
             </div>
-        </div>
-		<div class="col-10 text-center">
-            
-			 <div class="card-header ">
-                  <!--  <h5>Advanced</h5>
-                    <p-fileUpload name="demo[]" (onBeforeUpload)="selectFile($event)" (onUpload)="upload()"
-                    chooseLabel="เลือกรูป" uploadLabel="อัพรูป"  
-                            accept="image/*" [maxFileSize]="100000000"  >
-                            <ng-template pTemplate="content">
-                                <ul *ngIf="uploadedFiles.length">
-                                    <li *ngFor="let file of uploadedFiles">{{file.name}} - {{file.size}} bytes</li>
-                                </ul>
-                            </ng-template>
-                    </p-fileUpload>
-                 -->
-                <!-- <div class="card-body" >
-                    <!-- <h1>{{iduser}}</h1>
-                    <h1>{{name}}</h1>-->
-                    <img  src="{{this.img}}" class="img-thumbnail" alt="Cinque Terre" > 
-                   
-                  
+
+            <div class="col-10 text-center">
+                <div class="card-header ">
+                    <img src="{{this.img}}" class="img-thumbnail" alt="Cinque Terre">
                     <input style="display: none" type="file" (change)="selectFile($event)" #hiddenfileinput>
-                    <button pButton pRipple (click)="hiddenfileinput.click()"  class="p-button-secondary p-button-text" label="เปลี่ยนรูปโปรไฟล์" ></button>
-                    <button type="button" pButton pRipple class="p-button-secondary p-button-text" label="Upload" (click)="upload()" ></button>
+                    <button pButton pRipple (click)="hiddenfileinput.click()" class="p-button-secondary p-button-text"label="เปลี่ยนรูปโปรไฟล์"></button>
+                    <button type="button" pButton pRipple class="p-button-secondary p-button-text" label="Upload"(click)="upload()"></button>
                     <font color="red" *ngIf="this.checkerrorUploadimage==1">กรุณาเลือกรูปภาพก่อน</font>
-					<!-- <input   type="file" aria-label="Test" (change)="selectFile($event)">
-					<button type="button" pButton pRipple class="p-button-raised" label="Upload" (click)="upload()" ></button> -->
-				
+                </div>
+                <br>
+                <div class="row"> 
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2"><p>Email :</p></div>
+                    <div class="col-sm-2"><input id="disabled-input" type="text" pInputText [disabled]="true" [(ngModel)]="value1" /></div>
+                </div><br>
+                <div class="row"> 
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2"><p>ชื่อ :</p></div>
+                    <div class="col-sm-2"><input type="text" pInputText [(ngModel)]="value2"></div>
+                </div><br>
+                <div class="row"> 
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2"><p>คำบรรยาย :</p></div>
+                    <div class="col-sm-2"><textarea rows="5" cols="30" pInputTextarea [(ngModel)]="value3"></textarea></div>
+                </div><br>
+                <div class="row"> 
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-1"><button pButton pRipple type="button" label="ยืนยัน" class="p-button-warning" (click)="edituser()"></button></div>
+                    <div class="col-sm-1"><button pButton pRipple type="button" label="ยกเลิก" class="p-button-warning"></button></div>
+                    <div class="col-sm-2"></div>
+                </div>
             </div>
-		</div>
-		<div class="col-sm-2"></div>
+
+            <div class="col-sm-2"></div>
+
+        </div><br>
     </div>
 
-	<br>
-
-</div>
-	
-
-
+    <p-dialog header="แจ้งเตือน" [(visible)]="displayPosition" [position]="position" [modal]="true" [style]="{width: '25vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    	<p>แก้ไขสำเร็จ</p>
+	</p-dialog>
 </body>
