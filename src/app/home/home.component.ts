@@ -23,6 +23,7 @@ export class HomeComponent implements OnInit {
   
   checklike = new Array();
   checkerrorPost:any;
+  checkerrorUploadimage2:any;
 
   displayDeletePost:any;
   displayPosition: any;
@@ -70,13 +71,17 @@ export class HomeComponent implements OnInit {
 ////////////////////////////<<เลือกไฟล์ภาพและโพสต์รูปภาพ>>//////////////////////////////////////////////////////////////////////////////////////
   selectedfile: any;
   selectFile(event: any){
-   this.selectedfile = event.target.files[0];
+  this.checkerrorUploadimage2 = 1;
+  this.checkerrorPost = 0;
+  this.selectedfile = event.target.files[0];
   }
   upload(){
     const fd = new FormData();
     fd.append('IDuser_post',this.iduser);   
     if(this.caption === undefined){
       this.caption = " ";
+      fd.append('caption',this.caption);
+    }else{
       fd.append('caption',this.caption);
     }  
     fd.append('avatar',this.selectedfile);
@@ -87,6 +92,7 @@ export class HomeComponent implements OnInit {
                 this.displayPosition3 = true;
                 this.messageService.add({key: 'bl', severity:'success', summary: 'Success', detail: 'Success',life:3000});
               }, error=>{
+                this.checkerrorUploadimage2 = 0;
                 this.checkerrorPost = 1;
                 console.log("post fail");
               }); 

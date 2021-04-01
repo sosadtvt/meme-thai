@@ -78,7 +78,6 @@ export class EditComponent implements OnInit {
    selectFile(event: any){
     this.selectedfile = event.target.files[0];
     this.checkerrorUploadimage2 = 1;
-    //console.log("sss"+this.checkerrorUploadimage2);
    }
 
   upload(){

@@ -15,7 +15,8 @@
                     <p-avatar image="{{img}}" styleClass="p-mr-2" size="large"   shape="circle"></p-avatar>&nbsp;
                     <button pButton pRipple type="button" style="width: 90%;" label="โพสต์อะไรซักอย่างสิ {{name}}" class="p-button-rounded p-button-secondary" (click)="showBasicDialog()"></button>
                     <p-dialog header="สร้างโพสต์" [(visible)]="myDialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
-                        <font color="red" *ngIf="this.checkerrorPost == 1">กรุณาใส่รูปภาพก่อนโพสค์</font>
+                        <font color="red" *ngIf="this.checkerrorPost == 1">กรุณาใส่รูปภาพ PNG. หรือ JPG. ก่อนโพสต์</font>
+                        <font color="green" *ngIf="this.checkerrorUploadimage2 == 1">เลือกไฟล์สำเร็จ</font>
                         <div class="card">
                             
                         <!-- <label for="fname">คำบรรยายภาพ</label>&nbsp; -->
@@ -25,12 +26,12 @@
                         <!-- <input type="text" pInputText id="float-input"  [(ngModel)]="caption"><br> -->
                         <!-- <input type="file" (change)="selectFile($event)">
                         <button type="button" (click)="upload()">Post</button> -->
-                        <input style="display: none" type="file" (change)="selectFile($event)" #hiddenfileinput>
+                        <input style="display: none" type="file" accept="image/x-png,image/jpeg" (change)="selectFile($event)" #hiddenfileinput>
                         <button pButton pRipple (click)="hiddenfileinput.click()"  class="p-button-secondary p-button-text" label="เลือกรูป" ></button>
                         
                      </div>
                     <ng-template pTemplate="footer">
-                        <button type="button"  style="width: 100%;" pButton pRipple class="p-button-rounded p-button-secondary" label="Post" (click)="upload()" ></button>
+                        <button type="button"  style="width: 100%;" pButton pRipple class="p-button-rounded p-button-secondary" label="โพสต์" (click)="upload()" ></button>
                     </ng-template>
                     </p-dialog>
                 </div>
