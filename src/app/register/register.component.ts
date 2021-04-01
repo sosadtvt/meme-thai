@@ -79,8 +79,6 @@ export class RegisterComponent implements OnInit {
       }
    }
     KeyCode(event:any){
-      console.log(event.key);
-        
         if(event.key=='a' || event.key=='b' || event.key=='c' || event.key=='d' || event.key=='e' || event.key=='f'
         || event.key=='g' || event.key=='h' || event.key=='i' || event.key=='j' || event.key=='k' || event.key=='l'
         || event.key=='m' || event.key=='n' || event.key=='o' || event.key=='p' || event.key=='q' || event.key=='r'
@@ -97,7 +95,28 @@ export class RegisterComponent implements OnInit {
 
           console.log("OK");
         }else{
-          alert("กรอกได้เฉพาะ a-z,A-Z,0-9, และ '_' ");
+          alert("อีเมล กรอกได้เฉพาะ a-z,A-Z,0-9,@ และ '_' ");
+          location.reload();
+        }
+    }
+    KeyCode2(event:any){
+        if(event.key=='a' || event.key=='b' || event.key=='c' || event.key=='d' || event.key=='e' || event.key=='f'
+        || event.key=='g' || event.key=='h' || event.key=='i' || event.key=='j' || event.key=='k' || event.key=='l'
+        || event.key=='m' || event.key=='n' || event.key=='o' || event.key=='p' || event.key=='q' || event.key=='r'
+        || event.key=='s' || event.key=='t' || event.key=='u' || event.key=='v' || event.key=='w' || event.key=='x'
+        || event.key=='y' || event.key=='z' ||
+           event.key=='A' || event.key=='B' || event.key=='C' || event.key=='D' || event.key=='E' || event.key=='F'
+        || event.key=='G' || event.key=='H' || event.key=='I' || event.key=='J' || event.key=='K' || event.key=='L'
+        || event.key=='M' || event.key=='N' || event.key=='O' || event.key=='P' || event.key=='Q' || event.key=='R'
+        || event.key=='S' || event.key=='T' || event.key=='U' || event.key=='V' || event.key=='W' || event.key=='X'
+        || event.key=='Y' || event.key=='Z' ||
+           event.key==0 || event.key==1 || event.key==2 || event.key==3 || event.key==4 || event.key==5
+        || event.key==6 || event.key==7 || event.key==8 || event.key==9 || event.key=='_' 
+        || event.key=='Shift' || event.key=='Backspace' ){
+
+          console.log("OK");
+        }else{
+          alert("กรอกได้เฉพาะ a-z,A-Z,0-9 และ '_' ");
           location.reload();
         }
     }

@@ -22,8 +22,9 @@
                     <img src="{{this.img}}" class="img-thumbnail" alt="Cinque Terre">
                     <input style="display: none" type="file" (change)="selectFile($event)" #hiddenfileinput>
                     <button pButton pRipple (click)="hiddenfileinput.click()" class="p-button-secondary p-button-text"label="เปลี่ยนรูปโปรไฟล์"></button>
-                    <button type="button" pButton pRipple class="p-button-secondary p-button-text" label="Upload"(click)="upload()"></button>
-                    <font color="red" *ngIf="this.checkerrorUploadimage==1">กรุณาเลือกรูปภาพก่อน</font>
+                    <button type="button" pButton pRipple class="p-button-secondary p-button-text" label="อัพโหลด"(click)="upload()"></button>
+                    <font color="red" *ngIf="this.checkerrorUploadimage==1">ผิดพลาด กรุณาเลือกรูปภาพก่อน</font>
+                    <font color="green" *ngIf="this.checkerrorUploadimage2==1">เลือกรูปภาพสำเร็จ กด"อัพโหลด"เพื่อดำเนินการต่อ</font>
                 </div>
                 <br>
                 <div class="row"> 
@@ -57,5 +58,9 @@
 
     <p-dialog header="แจ้งเตือน" [(visible)]="displayPosition" [position]="position" [modal]="true" [style]="{width: '25vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
     	<p>แก้ไขสำเร็จ</p>
+	</p-dialog>
+
+    <p-dialog header="อัพโหลดรูปภาพสำเร็จ" [(visible)]="displayPosition2" [position]="position" [modal]="true" [style]="{width: '25vw'}" [baseZIndex]="10000" [draggable]="false" [resizable]="false">
+    	<p>กรุณารอสักครู่....</p>
 	</p-dialog>
 </body>

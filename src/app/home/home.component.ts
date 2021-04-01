@@ -74,8 +74,11 @@ export class HomeComponent implements OnInit {
   }
   upload(){
     const fd = new FormData();
-    fd.append('IDuser_post',this.iduser);
-    fd.append('caption',this.caption);
+    fd.append('IDuser_post',this.iduser);   
+    if(this.caption === undefined){
+      this.caption = " ";
+      fd.append('caption',this.caption);
+    }  
     fd.append('avatar',this.selectedfile);
     this.http.post('http://memthainode.comsciproject.com/post/createpost', fd)
               .subscribe(response =>{
@@ -83,7 +86,6 @@ export class HomeComponent implements OnInit {
                 this.myDialog = false;
                 this.displayPosition3 = true;
                 this.messageService.add({key: 'bl', severity:'success', summary: 'Success', detail: 'Success',life:3000});
-                //location.reload();
               }, error=>{
                 this.checkerrorPost = 1;
                 console.log("post fail");

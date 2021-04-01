@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnChanges , OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {MenuItem} from 'primeng/api';
 import {MegaMenuItem} from 'primeng/api';
 @Component({
@@ -19,20 +20,20 @@ export class HeaderComponent implements OnInit {
 
   selectedCountry: any;
   responseSearch: any;
-
-  constructor (private http: HttpClient){
+  displayPositionLogOut: any;
+  constructor (private http: HttpClient,private router: Router){
     this.name = localStorage.getItem('TOKENNAME');
     this.img = localStorage.getItem('TOKENIMAGE');
     this.iduser = localStorage.getItem('TOKENIDUSER');
     this.token = localStorage.getItem('TOKEN');
-  }
+}
 
-   ngOnInit(){
+ngOnInit(){
    
-   }
-   outputfiltered: any;
+}
 
-   filterCountry(event: any) {
+outputfiltered: any;
+filterCountry(event: any) {
     let filtered : any[] = [];
     let query = event.query;
     let data;
@@ -67,12 +68,15 @@ clickk(id:any){
   window.location.href = "/profile/"+id;
 }
 
-   clicklogout(){
-     localStorage.removeItem('TOKENNAME');
-     localStorage.removeItem('TOKENIMAGE');
-     localStorage.removeItem('TOKENIDUSER');
-     localStorage.removeItem('TOKEN');
-   }
-   
+clicklogout(){
+  this.displayPositionLogOut=true;
+}
+RedirectLogin(){
+  this.router.navigateByUrl('/login');
+  localStorage.removeItem('TOKENNAME');
+  localStorage.removeItem('TOKENIMAGE');
+  localStorage.removeItem('TOKENIDUSER');
+  localStorage.removeItem('TOKEN');
+}
 }
 
