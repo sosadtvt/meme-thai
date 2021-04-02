@@ -26,7 +26,7 @@
                         <!-- <input type="text" pInputText id="float-input"  [(ngModel)]="caption"><br> -->
                         <!-- <input type="file" (change)="selectFile($event)">
                         <button type="button" (click)="upload()">Post</button> -->
-                        <input style="display: none" type="file" accept="image/x-png,image/jpeg" (change)="selectFile($event)" #hiddenfileinput>
+                        <input style="display: none" type="file" accept="image/x-png,image/gif,image/jpeg" (change)="selectFile($event)" #hiddenfileinput>
                         <button pButton pRipple (click)="hiddenfileinput.click()"  class="p-button-secondary p-button-text" label="เลือกรูป" ></button>
                         
                      </div>

@@ -20,7 +20,7 @@
             <div class="col-10 text-center">
                 <div class="card-header ">
                     <img src="{{this.img}}" class="img-thumbnail" alt="Cinque Terre">
-                    <input style="display: none" type="file" (change)="selectFile($event)" #hiddenfileinput>
+                    <input style="display: none" type="file"  accept="image/x-png,image/gif,image/jpeg" (change)="selectFile($event)" #hiddenfileinput>
                     <button pButton pRipple (click)="hiddenfileinput.click()" class="p-button-secondary p-button-text"label="เปลี่ยนรูปโปรไฟล์"></button>
                     <button type="button" pButton pRipple class="p-button-secondary p-button-text" label="อัพโหลด"(click)="upload()"></button>
                     <font color="red" *ngIf="this.checkerrorUploadimage==1">ผิดพลาด กรุณาเลือกรูปภาพก่อน</font>
@@ -46,7 +46,7 @@
                     <div class="col-sm-2"></div>
                     <div class="col-sm-2"></div>
                     <div class="col-sm-1"><button pButton pRipple type="button" label="ยืนยัน" class="p-button-warning" (click)="edituser()"></button></div>
-                    <div class="col-sm-1"><button pButton pRipple type="button" label="ยกเลิก" class="p-button-warning"></button></div>
+                    <div class="col-sm-1"><button pButton pRipple type="button" label="ยกเลิก" class="p-button-warning" routerLink="/profile/{{iduser}}"></button></div>
                     <div class="col-sm-2"></div>
                 </div>
             </div>

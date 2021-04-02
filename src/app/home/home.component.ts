@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   displayPosition2: any;
   displayPosition3: any;
   position: any;
+  value = 0;
   constructor(private router:ActivatedRoute,private http: HttpClient,private messageService: MessageService) {
    
    }
@@ -90,6 +91,17 @@ export class HomeComponent implements OnInit {
                 this.checkerrorPost = 0;
                 this.myDialog = false;
                 this.displayPosition3 = true;
+
+                  let inter = setInterval(()=>{
+                    this.value+=20;
+                      if(this.value>=100){
+                        clearInterval(inter);
+                        setTimeout(()=>{
+                          location.reload();
+                        },1000);
+                      }
+                  },100); 
+                  
                 this.messageService.add({key: 'bl', severity:'success', summary: 'Success', detail: 'Success',life:3000});
               }, error=>{
                 this.checkerrorUploadimage2 = 0;
@@ -134,6 +146,17 @@ export class HomeComponent implements OnInit {
                   this.displayEditPost = false;
                   this.position = "bottom-left";
                   this.displayPosition = true;
+
+                    let inter = setInterval(()=>{
+                      this.value+=20;
+                        if(this.value>=100){
+                          clearInterval(inter);
+                          setTimeout(()=>{
+                            location.reload();
+                          },1000);
+                        }
+                    },100);
+                   
                 }, error=>{
                   console.log("delete fail");
                 }); 

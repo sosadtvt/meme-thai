@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
   displayPosition: any;
   displayPosition2: any;
   position: any;
+  value = 0;
   constructor(private router:ActivatedRoute,private http: HttpClient) {
     this.id = router.snapshot.params['id']; //ส่ง id มาหน้า profile
    }
@@ -163,9 +164,18 @@ export class ProfileComponent implements OnInit {
                 this.displayDeletePost = false;
                 this.displayBasic2 = false;
                 this.displayEditPost = false;
-                
                 this.position = "bottom-left";
                 this.displayPosition = true;
+
+                  let inter = setInterval(()=>{
+                    this.value+=20;
+                      if(this.value>=100){
+                        clearInterval(inter);
+                        setTimeout(()=>{
+                          location.reload();
+                        },1000);
+                      }
+                  },100);
 
                 console.log("delete success");
               }, error=>{
